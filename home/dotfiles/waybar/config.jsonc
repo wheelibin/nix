@@ -1,0 +1,20 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": [
+    "workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "tray",
+    "cpu",
+    "memory",
+    "battery"
+  ],
+  "tray": {
+    "icon_size": 16,
+    "spacing": 4
+  }
+}

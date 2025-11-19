@@ -1,0 +1,11 @@
+# ~/.config/starship.toml
+format = """
+$directory\
+$git_branch\
+$character\
+"""
+
+right_format = """
+$cmd_duration\
+$hostname\
+"""
