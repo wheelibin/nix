@@ -61,6 +61,21 @@
     enableZshIntegration = true;
   };
 
+
+ programs.ssh = {
+    enable = true;
+
+    matchBlocks = {
+      "github.com" = {
+        host = "github.com";
+        identityFile = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
+      };
+    };
+  };
+
 systemd.user.services.dropbox = {
   Unit = {
     Description = "Dropbox daemon";
