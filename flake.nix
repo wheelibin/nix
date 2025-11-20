@@ -1,5 +1,5 @@
 {
-  description = "NixOS on MacBookPro11,5 (base flake)";
+  description = "NixOS configuration with multiple machines and user profiles";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -12,35 +12,35 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, ... }: {
-    nixosConfigurations.mbp = nixpkgs.lib.nixosSystem {
-
-
-        specialArgs = let
-          system = "x86_64-linux";
-        in {
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      
+      mkSpecialArgs = system: {
+        inherit system;
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
         };
-
-      modules = [
-        ./hosts/mbp/default.nix
-
-        # Hardware quirks & sensors for MacBookPro11,5
-        nixos-hardware.nixosModules.apple-macbook-pro-11-5
-
-        # Home Manager integrated into NixOS
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.jon = import ./home/jon.nix;
-        }
-      ];
+      };
+    in
+    {
+      nixosConfigurations = {
+        mbp = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = mkSpecialArgs system;
+          modules = [
+            ./hosts/mbp
+            nixos-hardware.nixosModules.apple-macbook-pro-11-5
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jon = import ./home/profiles/jon;
+              home-manager.extraSpecialArgs = mkSpecialArgs system;
+            }
+          ];
+        };
+      };
     };
-
-    # (We’ll add macOS home config later down here)
-  };
 }
