@@ -13,17 +13,12 @@
     legcord
   ];
 
-  # Example: manage dotfiles via Nix instead of chezmoi
-  # (adjust paths / add more as you migrate)
-  # home.file.".zshrc".source = ../dotfiles/zshrc;
-  # home.file.".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
   home.file.".config/waybar".source = ./dotfiles/waybar;
   home.file.".config/nvim".source = ./dotfiles/nvim;
   home.file.".config/starship.toml".source = ./dotfiles/starship.toml;
   home.file.".config/hypr".source = ./dotfiles/hypr;
   home.file.".config/alacritty".source = ./dotfiles/alacritty;
 
-  # Example: enable eza/btop modules once you want their HM features
   programs.btop.enable = true;
   programs.eza.enable = true;
   programs.fd.enable = true;
