@@ -23,7 +23,7 @@
   environment.systemPackages = with pkgs; [
     waybar
     wofi
-    rofi
+    papirus-icon-theme
     hyprpaper
     hypridle
     hyprlock
@@ -43,6 +43,7 @@
     gcc
     pkgs-unstable.sunsetr
   ];
+
 
   services.greetd = {
     enable = true;
