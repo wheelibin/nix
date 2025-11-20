@@ -8,6 +8,7 @@
     ../../programs/terminal/alacritty.nix
     ../../programs/desktop/hyprland.nix
     ../../programs/desktop/waybar.nix
+    ../../programs/desktop/rofi.nix
     ../../programs/git
   ];
 
