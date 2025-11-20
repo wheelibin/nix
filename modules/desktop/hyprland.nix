@@ -37,7 +37,6 @@
     brightnessctl
     pamixer
     firefox
-    neovim
     dropbox
     git
     gnupg
