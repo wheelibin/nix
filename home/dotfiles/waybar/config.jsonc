@@ -16,5 +16,12 @@
   "tray": {
     "icon_size": 16,
     "spacing": 4
+  },
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{id}",
+    "disable-scroll": false,
+    "on-click": "activate",
+    "sort-by-number": true
   }
 }

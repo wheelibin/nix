@@ -69,6 +69,12 @@
     enable = true;
   };
 
+  ## fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.caskaydia-mono
+  ];
+
+
   #### State version ####
   system.stateVersion = "25.05";
 }

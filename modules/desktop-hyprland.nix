@@ -44,6 +44,7 @@
     pkgs.gnupg
     pkgs.gcc
     pkgs-unstable.sunsetr
+
   ];
 
   #### greetd → log into Hyprland ####

@@ -21,6 +21,7 @@
   home.file.".config/nvim".source = ./dotfiles/nvim;
   home.file.".config/starship.toml".source = ./dotfiles/starship.toml;
   home.file.".config/hypr".source = ./dotfiles/hypr;
+  home.file.".config/alacritty".source = ./dotfiles/alacritty;
 
   # Example: enable eza/btop modules once you want their HM features
   programs.btop.enable = true;
