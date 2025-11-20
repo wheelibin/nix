@@ -1,0 +1,5 @@
+{ ... }:
+
+{
+  # Common desktop settings
+}
