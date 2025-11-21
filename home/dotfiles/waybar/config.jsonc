@@ -14,7 +14,7 @@
     "battery"
   ],
   "tray": {
-    "icon_size": 16,
+    "icon_size": 32,
     "spacing": 4
   },
   "hyprland/workspaces": {
