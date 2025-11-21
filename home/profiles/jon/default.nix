@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
     ./packages.nix
+    ./services.nix
     ../../programs/shell
     ../../programs/editors/neovim.nix
     ../../programs/terminal/alacritty.nix
@@ -34,18 +35,4 @@
     shellAliases.rb = "sudo nixos-rebuild switch --flake /etc/nixos#mbp";
   };
 
-  systemd.user.services.dropbox = {
-    Unit = {
-      Description = "Dropbox daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
-    };
-
-    Service = {
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      Restart = "on-failure";
-    };
-
-    Install = { WantedBy = [ "graphical-session.target" ]; };
-  };
 }
