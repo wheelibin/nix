@@ -13,34 +13,47 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      
-      mkSpecialArgs = system: {
+  let
+    linuxSystem = "x86_64-linux";
+    darwinSystem = "aarch64-darwin";
+
+    mkSpecialArgs = system: {
+      inherit system;
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
-        pkgs-unstable = import nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      };
-    in
-    {
-      nixosConfigurations = {
-        mbp = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = mkSpecialArgs system;
-          modules = [
-            ./hosts/mbp
-            nixos-hardware.nixosModules.apple-macbook-pro-11-5
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.jon = import ./home/profiles/jon;
-              home-manager.extraSpecialArgs = mkSpecialArgs system;
-            }
-          ];
-        };
+        config.allowUnfree = true;
       };
     };
+  in {
+    nixosConfigurations = {
+      mbp = nixpkgs.lib.nixosSystem {
+        system = linuxSystem;
+        specialArgs = mkSpecialArgs linuxSystem;
+        modules = [
+          ./hosts/mbp
+          nixos-hardware.nixosModules.apple-macbook-pro-11-5
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jon = import ./home/profiles/jon;
+            home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
+          }
+        ];
+      };
+    };
+
+    homeConfigurations = {
+      work = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = darwinSystem;
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = mkSpecialArgs darwinSystem;
+        modules = [
+          ./home/profiles/work
+        ];
+      };
+    };
+  };
 }

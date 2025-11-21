@@ -6,5 +6,5 @@
     pkgs.tmux
   ];
 
-  home.file.".config/tmux/tmux.conf".source = ../../dotfiles/tmux/tmux.conf;
+  home.file.".config/tmux".source = ../../dotfiles/tmux;
 }

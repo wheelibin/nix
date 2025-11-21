@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# sorted by last attached
+selected=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' -f '#{?session_attached,0,1}' | \
+  sort -nr | \
+  cut -d' ' -f2- | \
+  fzf --reverse \
+    --bind "alt-x:execute(tmux kill-session -t {})" \
+    --bind "alt-x:+reload(tmux list-sessions -F '#{session_last_attached} #{session_name}' -f '#{?session_attached,0,1}' | sort -nr | cut -d' ' -f2-)" \
+    --preview 'tmux list-panes -t {} -F "#D" -f "#{pane_active}" | xargs tmux capture-pane -ep -t' \
+    --preview-window=right:66%)
+
+[ -n "$selected" ] && tmux switch-client -t "$selected"
+
