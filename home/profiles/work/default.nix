@@ -9,6 +9,7 @@
     ../../programs/desktop/bruno.nix
   ];
 
+  xdg.enable = true;
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
   home.stateVersion = "25.05";

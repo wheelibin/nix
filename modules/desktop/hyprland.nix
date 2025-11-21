@@ -35,12 +35,12 @@
     wl-clipboard
     brightnessctl
     pamixer
-    firefox
-    dropbox
     git
     gnupg
     gcc
     pkgs-unstable.sunsetr
+    firefox
+    dropbox
   ];
 
 
