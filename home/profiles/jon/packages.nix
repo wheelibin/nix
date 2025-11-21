@@ -5,5 +5,6 @@
     jellyfin-media-player
     legcord
     pass
+    cargo
   ];
 }
