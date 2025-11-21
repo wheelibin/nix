@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 {
   imports = [
@@ -25,9 +25,7 @@
     enable = true;
 
     # Private per-machine configuration files that are NOT in git
-    includes = [
-      "${config.home.homeDirectory}/.ssh/config.work"
-    ];
+    includes = [ "${config.home.homeDirectory}/.ssh/config.work" ];
   };
 
 }

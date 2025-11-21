@@ -26,7 +26,8 @@ return {
         html = { "prettier", "prettier", stop_after_first = true },
         go = { "goimports", "gofumpt", "golines" },
         markdown = { "mdformat" },
-        sql = { "pg_format" }
+        sql = { "pg_format" },
+        nix = { "nixfmt" },
       },
       -- Set up format-on-save
       format_on_save = function(bufnr)

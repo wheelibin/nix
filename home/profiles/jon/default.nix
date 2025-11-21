@@ -24,16 +24,14 @@
       "github.com" = {
         host = "github.com";
         identityFile = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
-        extraOptions = {
-          AddKeysToAgent = "yes";
-        };
+        extraOptions = { AddKeysToAgent = "yes"; };
       };
     };
   };
 
   programs.zsh = {
     enable = true;
-    shellAliases.rb = "rebuild command";
+    shellAliases.rb = "sudo nixos-rebuild switch --flake /etc/nixos#mbp";
   };
 
   systemd.user.services.dropbox = {
@@ -48,8 +46,6 @@
       Restart = "on-failure";
     };
 
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
-    };
+    Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 }
