@@ -6,6 +6,7 @@
     btop
     eza
     fd
+    lazydocker
     lazygit
     ripgrep
   ];
