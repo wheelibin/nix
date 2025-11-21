@@ -33,7 +33,6 @@
     grim
     slurp
     wl-clipboard
-    jq
     brightnessctl
     pamixer
     firefox
