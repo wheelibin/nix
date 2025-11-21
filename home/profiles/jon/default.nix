@@ -31,6 +31,11 @@
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    shellAliases.rb = "rebuild command";
+  };
+
   systemd.user.services.dropbox = {
     Unit = {
       Description = "Dropbox daemon";

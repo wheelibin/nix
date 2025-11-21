@@ -10,8 +10,6 @@
       plugins = [ ];
     };
 
-    shellAliases.l = "eza -l";
-
     initContent = ''
       # Fix TERM from Ghostty when SSH-ing
       if [[ "$TERM" = "xterm-ghostty" ]]; then
