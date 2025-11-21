@@ -20,4 +20,13 @@
     shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#work";
   };
 
+  programs.ssh = {
+    enable = true;
+
+    # Private per-machine configuration files that are NOT in git
+    includes = [
+      "${config.home.homeDirectory}/.ssh/config.work"
+    ];
+  };
+
 }
