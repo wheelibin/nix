@@ -2,7 +2,7 @@
   "layer": "top",
   "position": "top",
   "modules-left": [
-    "workspaces"
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "clock"
@@ -18,10 +18,21 @@
     "spacing": 4
   },
   "hyprland/workspaces": {
-    "all-outputs": true,
+    "all-outputs": false,
     "format": "{id}",
-    "disable-scroll": false,
+    "disable-scroll": true,
     "on-click": "activate",
-    "sort-by-number": true
+    "sort-by-number": true,
+    "persistent-workspaces": {
+      "1": {},
+      "2": {},
+      "3": {},
+      "4": {},
+      "5": {},
+      "6": {},
+      "7": {},
+      "8": {},
+      "9": {}
+    }
   }
 }
