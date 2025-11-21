@@ -40,7 +40,6 @@
     gcc
     pkgs-unstable.sunsetr
     firefox
-    dropbox
   ];
 
 
