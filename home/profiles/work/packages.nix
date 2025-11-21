@@ -2,13 +2,11 @@
 
 {
   home.packages = with pkgs; [
+    bruno
     btop
     eza
     fd
-    jellyfin-media-player
     lazygit
-    legcord
-    pass
     ripgrep
   ];
 }
