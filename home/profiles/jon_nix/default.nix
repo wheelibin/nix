@@ -33,6 +33,16 @@
   programs.zsh = {
     enable = true;
     shellAliases.rb = "sudo nixos-rebuild switch --flake /etc/nixos#mbp";
+    envExtra = '' 
+      ELECTRON_ENABLE_WAYLAND=1
+    '';
+    initContent = ''
+      # Fix TERM from Ghostty when SSH-ing
+      if [[ "$TERM" = "xterm-ghostty" ]]; then
+        export TERM="xterm-256color"
+      fi
+      export EDITOR="nvim"
+    '';
   };
 
 }
