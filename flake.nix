@@ -36,7 +36,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jon = import ./home/profiles/jon;
+            home-manager.users.jon = import ./home/profiles/jon_nix;
             home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
           }
         ];
@@ -52,6 +52,16 @@
         extraSpecialArgs = mkSpecialArgs darwinSystem;
         modules = [
           ./home/profiles/work
+        ];
+      };
+      jon_mac = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = darwinSystem;
+          config.allowUnfree = true;
+        };
+        extraSpecialArgs = mkSpecialArgs darwinSystem;
+        modules = [
+          ./home/profiles/jon_mac
         ];
       };
     };
