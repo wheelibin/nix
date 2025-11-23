@@ -1,6 +1,6 @@
 [font]
 normal = { family = "JetBrainsMonoNL NFM ExtraLight" }
-size = 20.0
+size = 12.0
 
 [window]
 decorations = "buttonless"
