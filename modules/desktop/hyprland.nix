@@ -29,7 +29,6 @@
     hyprlock
     hyprpolkitagent
     mako
-    alacritty
     grim
     slurp
     wl-clipboard
