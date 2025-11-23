@@ -5,7 +5,6 @@
     ./packages.nix
     ../../programs/shell
     ../../programs/editors/neovim.nix
-    ../../programs/terminal/alacritty.nix
     ../../programs/terminal/ghostty.nix
     ../../programs/git
   ];
