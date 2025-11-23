@@ -1,0 +1,21 @@
+# appearance
+theme                            = Kanagawa Dragon
+font-family                      = JetBrainsMonoNL NFM ExtraLight
+font-size                        = 24              
+adjust-cell-height               = -8%
+
+# options
+background-opacity               = 0.96
+background-blur                  = true            
+macos-option-as-alt              = true
+macos-titlebar-style             = hidden
+mouse-hide-while-typing          = true
+window-save-state                = always
+window-inherit-working-directory = true
+window-inherit-font-size         = true
+link-url                         = true
+link-previews                    = true
+clipboard-trim-trailing-spaces   = true
+
+# shader
+custom-shader                    = shaders/cursor_smear.glsl

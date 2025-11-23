@@ -1,6 +1,11 @@
 { ... }:
 
 {
+
+  imports = [
+    ./lazygit.nix
+  ];
+
   programs.git = {
     enable = true;
     # Add your git config here:
