@@ -5,6 +5,7 @@
     ./btop.nix
     ./eza.nix
     ./fd.nix
+    ./fnm.nix
     ./fzf.nix
     ./jq.nix
     ./lazydocker.nix
