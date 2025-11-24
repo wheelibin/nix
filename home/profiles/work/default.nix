@@ -7,6 +7,7 @@
     ../../programs/editors/neovim.nix
     ../../programs/git
     ../../programs/desktop/bruno.nix
+    ../../programs/languages/go.nix
   ];
 
   xdg.enable = true;
