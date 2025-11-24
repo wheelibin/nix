@@ -1,8 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    bruno
-    fnm
+  home.packages = with pkgs; [ 
+    # packages
   ];
 }
