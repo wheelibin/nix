@@ -1,21 +1,5 @@
 { pkgs, config, ... }:
 
-
-let
-  tmux-kanagawa = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-kanagawa";
-    version = "master";  # or a commit hash
-    src = pkgs.fetchFromGitHub {
-      owner = "Nybkox";
-      repo = "tmux-kanagawa";
-      rev = "master"; # You can pin to a commit later
-      # run "nix build" once without sha256 to get the correct hash
-      sha256 = "sha256-BcPErvbG7QwhxXgc3brSQKw3xd3jO5MHNxUj595L0uk=";
-    };
-    # IMPORTANT: match the actual filename in the repo
-    rtpFilePath = "kanagawa.tmux";
-  };
-in
 {
   home.file.".config/tmux/tmux-session-menu".source = ../../dotfiles/tmux/tmux-session-menu;
   home.file.".config/tmux/tmux-sessionizer".source = ../../dotfiles/tmux/tmux-sessionizer;
@@ -29,13 +13,24 @@ in
     baseIndex = 1;
     mouse = true;
 
-    plugins = [
-      pkgs.tmuxPlugins.sensible
-      tmux-kanagawa
-    ];
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      {
+        plugin = kanagawa;
+        extraConfig = ''
+          set -g @kanagawa-ignore-window-colors true
+          set -g @kanagawa-theme 'dragon'
+          set -g @kanagawa-show-battery false
+          set -g @kanagawa-show-powerline true
+          set -g @kanagawa-refresh-rate 10
+          set -g @kanagawa-plugins "time git"
+        '';
+      }
+	];
 
     # Your keybindings and extra config go here
     extraConfig = ''
+      # ensure login shell is used
       set -g default-shell "$SHELL"
       set -g default-command "$SHELL -l"
 
@@ -79,9 +74,6 @@ in
       bind -r f display-popup -E -w 64 -h 24 -b "rounded" "~/.config/tmux/tmux-sessionizer"
       bind -r g display-popup -h 80% -w 80% -E "lazygit"
 
-      # Theme configs
-      set -g @kanagawa-ignore-window-colors true
-      set -g @kanagawa-theme 'dragon'
     '';
   };
 }
