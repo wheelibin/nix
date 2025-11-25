@@ -10,11 +10,10 @@ return {
   -- },
   settings = {
     gopls = {
-      -- Example: Enable all inlay hints for gopls
       hints = {
         assignVariableTypes = false,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
+        compositeLiteralFields = false,
+        compositeLiteralTypes = false,
         constantValues = true, -- Example: Also enable constant value hints
         functionTypeParameters = true,
         parameterNames = false,
