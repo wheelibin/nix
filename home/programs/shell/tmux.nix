@@ -4,8 +4,6 @@
   home.file.".config/tmux/tmux-session-menu".source = ../../dotfiles/tmux/tmux-session-menu;
   home.file.".config/tmux/tmux-sessionizer".source = ../../dotfiles/tmux/tmux-sessionizer;
 
-  # needed in case tmux looks here for the config
-  home.file.".tmux.conf".source = config.xdg.configHome + "/tmux/tmux.conf";
 
   programs.tmux = {
     enable = true;
@@ -71,4 +69,7 @@
 
     '';
   };
+
+  # needed in case tmux looks here for the config
+  # home.file.".tmux.conf".source = config.xdg.configHome + "/tmux/tmux.conf";
 }
