@@ -12,6 +12,9 @@
     terminal = "screen-256color";
     baseIndex = 1;
     mouse = true;
+    clock24 = true;
+    prefix = "M-space";
+    escapeTime = 0;
 
     plugins = with pkgs.tmuxPlugins; [
       sensible
@@ -36,14 +39,6 @@
 
       # make colors inside tmux look the same as outside tmux
       set-option -ga terminal-overrides ",xterm-256color:Tc"
-
-      # escape-time fix
-      set-option -s escape-time 0
-
-      # prefix M-space instead of C-b
-      unbind-key C-b
-      set-option -g prefix M-space
-      bind-key M-space send-prefix
 
       # config reload
       bind-key r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
