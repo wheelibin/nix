@@ -7,7 +7,12 @@
     # Use zsh integration
     enableZshIntegration = true;
 
-    # Optional: disable sync entirely
+    flags = [
+      # no up arrow binding
+      "--disable-up-arrow"
+    ];
+
+    # disable sync entirely
     settings = {
       sync = {
         enabled = false;
