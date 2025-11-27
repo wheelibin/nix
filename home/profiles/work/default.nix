@@ -4,6 +4,7 @@
   imports = [
     ./packages.nix
     ../../programs/shell
+    ../../programs/docker
     ../../programs/editors/neovim.nix
     ../../programs/git
     ../../programs/desktop/bruno.nix
