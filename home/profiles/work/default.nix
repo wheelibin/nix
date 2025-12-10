@@ -9,6 +9,7 @@
     ../../programs/git
     ../../programs/desktop/bruno.nix
     ../../programs/languages/go.nix
+    ../../programs/languages/python.nix
   ];
 
   xdg.enable = true;
