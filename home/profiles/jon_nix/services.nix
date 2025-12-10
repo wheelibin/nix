@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   services.dropbox = {
     enable = true;

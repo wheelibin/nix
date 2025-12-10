@@ -2,7 +2,7 @@
 
 {
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     python313
     black
     ruff

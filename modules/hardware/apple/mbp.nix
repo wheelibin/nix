@@ -1,5 +1,8 @@
 { ... }:
 
 {
-  boot.kernelModules = [ "applesmc" "coretemp" ];
+  boot.kernelModules = [
+    "applesmc"
+    "coretemp"
+  ];
 }
