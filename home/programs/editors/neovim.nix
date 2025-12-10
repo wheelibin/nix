@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
@@ -6,5 +6,22 @@
     defaultEditor = true;
   };
 
+  home.packages = with pkgs; [ 
+    pgformatter
+    nixfmt
+    nixfmt-tree # for formatting whole directories
+    mdformat
+    eslint_d
+  ];
+
   home.file.".config/nvim".source = ../../dotfiles/nvim;
+
+  programs.zsh = {
+    enable = true;
+
+    initContent = ''
+      export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
+    '';
+  };
+
 }
