@@ -1,14 +1,12 @@
 { pkgs, pkgs-unstable, ... }:
 
-{
-  imports = [
-    ./common.nix
-    ./fonts.nix
-  ];
+let kenku-fm = pkgs.callPackage ../../pkgs/kenku-fm.nix { };
+in {
+  imports = [ ./common.nix ./fonts.nix ];
 
   services.xserver.enable = false;
-
   services.pulseaudio.enable = false;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -16,11 +14,10 @@
   };
 
   services.dbus.enable = true;
-
   programs.hyprland.enable = true;
   security.pam.services.hyprlock = { };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     waybar
     wofi
     papirus-icon-theme
@@ -39,7 +36,7 @@
     gcc
     pkgs-unstable.sunsetr
     firefox
-  ];
+  ]) ++ [ kenku-fm ];
 
   services.greetd = {
     enable = true;
