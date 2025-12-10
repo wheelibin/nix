@@ -12,6 +12,7 @@
     nixfmt-tree # for formatting whole directories
     mdformat
     eslint_d
+    prettier
   ];
 
   home.file.".config/nvim".source = ../../dotfiles/nvim;
