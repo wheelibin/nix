@@ -2,7 +2,7 @@
 
 {
 
-  home.packages = [ pkgs.go ];
+  home.packages = with pkgs; [ go gci gofumpt gotools golangci-lint golines ];
 
   programs.zsh = {
     enable = true;
