@@ -6,7 +6,7 @@
     defaultEditor = true;
   };
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     pgformatter
     nixfmt
     nixfmt-tree # for formatting whole directories

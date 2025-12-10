@@ -4,7 +4,6 @@
   home.file.".config/tmux/tmux-session-menu".source = ../../dotfiles/tmux/tmux-session-menu;
   home.file.".config/tmux/tmux-sessionizer".source = ../../dotfiles/tmux/tmux-sessionizer;
 
-
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";
@@ -27,7 +26,7 @@
           set -g @kanagawa-plugins "time git"
         '';
       }
-	];
+    ];
 
     # Your keybindings and extra config go here
     extraConfig = ''

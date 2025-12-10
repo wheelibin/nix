@@ -25,7 +25,9 @@
       "github.com" = {
         host = "github.com";
         identityFile = [ "${config.home.homeDirectory}/.ssh/id_ed25519" ];
-        extraOptions = { AddKeysToAgent = "yes"; };
+        extraOptions = {
+          AddKeysToAgent = "yes";
+        };
       };
     };
   };
@@ -33,7 +35,7 @@
   programs.zsh = {
     enable = true;
     shellAliases.rb = "sudo nixos-rebuild switch --flake /etc/nixos#mbp";
-    envExtra = '' 
+    envExtra = ''
       ELECTRON_ENABLE_WAYLAND=1
     '';
     initContent = ''

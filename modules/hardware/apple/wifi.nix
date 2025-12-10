@@ -8,7 +8,10 @@
 
   systemd.services.fix-wifi-resume = {
     description = "Reload WiFi module after resume";
-    after = [ "network.target" "sleep.target" ];
+    after = [
+      "network.target"
+      "sleep.target"
+    ];
     wantedBy = [ "sleep.target" ];
 
     serviceConfig.Type = "simple";

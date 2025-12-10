@@ -18,7 +18,7 @@
   services.dbus.enable = true;
 
   programs.hyprland.enable = true;
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
 
   environment.systemPackages = with pkgs; [
     waybar
@@ -40,7 +40,6 @@
     pkgs-unstable.sunsetr
     firefox
   ];
-
 
   services.greetd = {
     enable = true;

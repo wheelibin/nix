@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ docker docker-credential-helpers ];
+  home.packages = with pkgs; [
+    docker
+    docker-credential-helpers
+  ];
 
 }
