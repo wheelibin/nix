@@ -69,6 +69,13 @@
     '';
   };
 
-  # needed in case tmux looks here for the config
-  # home.file.".tmux.conf".source = config.xdg.configHome + "/tmux/tmux.conf";
+  programs.zsh = {
+    enable = true;
+    initContent = ''
+      # Auto-attach tmux (safe: only for interactive shells, and only if not already inside tmux)
+      if [[ -z "$TMUX" && -o interactive ]]; then
+        tmux attach -t default || tmux new -s default
+      fi
+    '';
+  };
 }
