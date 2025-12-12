@@ -40,53 +40,48 @@ return {
         dapui.close()
       end
 
-      require("dap").adapters["pwa-node"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          -- 💀 Make sure to update this path to point to your installation
-          args = { "/Users/khck244/.local/share/js-debug/src/dapDebugServer.js", "${port}" },
-        }
-      }
-      require("dap").configurations.typescript = {
+      -- 1) Adapter definition for Go using delve
+      dap.adapters.go = function(callback, _)
+        -- Use delve's DAP mode
+        callback({
+          type = "server",
+          host = "127.0.0.1",
+          port = "${port}",
+          executable = {
+            command = "dlv",
+            args = { "dap", "-l", "127.0.0.1:${port}" },
+          },
+        })
+      end
+
+      -- 2) Configurations for Go
+      dap.configurations.go = {
         {
-          type = "pwa-node",
+          type = "go",
+          name = "Debug file",
           request = "launch",
-          name = "Launch file",
+          program = "${file}", -- current file
+        },
+        {
+          type = "go",
+          name = "Debug package (cwd)",
+          request = "launch",
+          program = ".", -- current directory/package
+        },
+        {
+          type = "go",
+          name = "Debug test (file)",
+          request = "launch",
+          mode = "test",
           program = "${file}",
-          cwd = "${workspaceFolder}",
         },
-      }
-      dap.adapters.go = {
-        type = 'server',
-        port = '${port}',
-        executable = {
-          command = 'dlv',
-          args = { 'dap', '-l', '127.0.0.1:${port}' },
-        },
-      }
-
-      dap.configurations.go = {
         {
-          type = 'go',
-          name = 'Debug',
-          request = 'launch',
-          program = '${file}',
+          type = "go",
+          name = "Debug test (package)",
+          request = "launch",
+          mode = "test",
+          program = "./...",
         },
-      }
-
-
-      dap.configurations.go = {
-        {
-          type = 'go',
-          name = 'Debug with env',
-          request = 'launch',
-          program = '${file}',
-          env = {
-          }
-        }
       }
     end
   }
