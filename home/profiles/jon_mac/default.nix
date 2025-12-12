@@ -8,6 +8,7 @@
     ../../programs/terminal/ghostty.nix
     ../../programs/git
     ../../programs/languages
+    ../../programs/desktop/fonts.nix
   ];
 
   xdg.enable = true;

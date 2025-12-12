@@ -2,7 +2,7 @@
 
 let kenku-fm = pkgs.callPackage ../../pkgs/kenku-fm.nix { };
 in {
-  imports = [ ./common.nix ./fonts.nix ];
+  imports = [ ./common.nix ];
 
   services.xserver.enable = false;
   services.pulseaudio.enable = false;
