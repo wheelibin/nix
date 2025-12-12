@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     python313
     black
+    isort
     ruff
   ];
 
