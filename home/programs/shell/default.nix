@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -15,5 +15,9 @@
     ./tmux.nix
     ./yazi.nix
     ./zsh.nix
+  ];
+
+  home.packages = with pkgs; [
+    gnupg
   ];
 }
