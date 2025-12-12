@@ -12,6 +12,7 @@
     ../../programs/desktop/rofi.nix
     ../../programs/git
     ../../programs/languages
+    ../../programs/desktop/fonts.nix
   ];
 
   home.username = "jon";

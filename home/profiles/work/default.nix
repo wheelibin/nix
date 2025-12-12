@@ -9,6 +9,7 @@
     ../../programs/git
     ../../programs/desktop/bruno.nix
     ../../programs/languages
+    ../../programs/desktop/fonts.nix
   ];
 
   xdg.enable = true;
