@@ -8,6 +8,24 @@ return {
       -- calling `setup` is optional for customization
       local actions = require "fzf-lua.actions"
       require("fzf-lua").setup({
+        winopts = {
+          preview = {
+            default = "builtin",
+          },
+        },
+        previewers = {
+          builtin = {
+            -- ensure builtin previewer is used
+            syntax = true,
+            extensions = {
+              png  = { "chafa", "--format=symbols", "--size=80x40" },
+              jpg  = { "chafa", "--format=symbols", "--size=80x40" },
+              jpeg = { "chafa", "--format=symbols", "--size=80x40" },
+              gif  = { "chafa", "--format=symbols", "--size=80x40" },
+              webp = { "chafa", "--format=symbols", "--size=80x40" },
+            },
+          },
+        },
         oldfiles = {
           prompt                  = 'History❯ ',
           cwd_only                = true,
