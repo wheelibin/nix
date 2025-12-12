@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 
@@ -12,4 +12,8 @@
     # userName = "Your Name";
     # userEmail = "your.email@example.com";
   };
+
+  home.packages = with pkgs; [
+    git-lfs
+  ];
 }
