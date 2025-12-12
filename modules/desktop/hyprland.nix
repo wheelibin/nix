@@ -26,6 +26,7 @@ in {
     hyprlock
     hyprpolkitagent
     mako
+    nodejs_24
     grim
     slurp
     wl-clipboard
@@ -36,6 +37,7 @@ in {
     gcc
     pkgs-unstable.sunsetr
     firefox
+    chromium
   ]) ++ [ kenku-fm ];
 
   services.greetd = {

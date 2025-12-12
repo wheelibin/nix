@@ -11,6 +11,7 @@
     ../../programs/desktop/waybar.nix
     ../../programs/desktop/rofi.nix
     ../../programs/git
+    ../../programs/languages/go.nix
   ];
 
   home.username = "jon";

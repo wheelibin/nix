@@ -9,6 +9,6 @@
   ];
 
   networking.hostName = "mbp";
-
+  nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
   system.stateVersion = "25.05";
 }

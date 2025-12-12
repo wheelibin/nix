@@ -4,7 +4,7 @@
   powerManagement.enable = true;
   services.tlp.enable = true;
 
-  services.logind.lidSwitch = "suspend";
-  services.logind.lidSwitchDocked = "ignore";
-  services.logind.lidSwitchExternalPower = "suspend";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
+  services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "suspend";
 }
