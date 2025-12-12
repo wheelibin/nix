@@ -11,8 +11,6 @@
     nixfmt
     nixfmt-tree # for formatting whole directories
     mdformat
-    eslint_d
-    prettier
     chafa # for image previews in fzf-lua
   ];
 
