@@ -8,8 +8,7 @@
     ../../programs/editors/neovim.nix
     ../../programs/git
     ../../programs/desktop/bruno.nix
-    ../../programs/languages/go.nix
-    ../../programs/languages/python.nix
+    ../../programs/languages
   ];
 
   xdg.enable = true;

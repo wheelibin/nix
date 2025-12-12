@@ -7,6 +7,7 @@
     ../../programs/editors/neovim.nix
     ../../programs/terminal/ghostty.nix
     ../../programs/git
+    ../../programs/languages
   ];
 
   xdg.enable = true;

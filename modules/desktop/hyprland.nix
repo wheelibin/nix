@@ -26,7 +26,6 @@ in {
     hyprlock
     hyprpolkitagent
     mako
-    nodejs_24
     grim
     slurp
     wl-clipboard
