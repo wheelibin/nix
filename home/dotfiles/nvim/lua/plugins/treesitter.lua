@@ -1,6 +1,7 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = "master",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
@@ -88,15 +89,15 @@ return {
         },
 
         indent = { enable = true },
-        -- incremental_selection = {
-        --   enable = true,
-        --   keymaps = {
-        --     init_selection = '<c-space>',
-        --     node_incremental = '<c-space>',
-        --     scope_incremental = '<c-s>',
-        --     node_decremental = '<M-space>',
-        --   },
-        -- },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = '<TAB>',
+            node_incremental = '<TAB>',
+            -- scope_incremental = '<c-s>',
+            node_decremental = '<S-TAB>',
+          },
+        },
 
       }
     end
