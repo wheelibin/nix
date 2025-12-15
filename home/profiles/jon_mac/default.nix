@@ -18,17 +18,17 @@
 
   programs.home-manager.enable = true;
 
+  programs.zsh = {
+    enable = true;
+    shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#jon_mac";
+  };
+
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
 
     # Private per-machine configuration files that are NOT in git
     includes = [ "${config.home.homeDirectory}/.ssh/config.extra" ];
-  };
-
-  programs.zsh = {
-    enable = true;
-    shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#jon_mac";
   };
 
 }
