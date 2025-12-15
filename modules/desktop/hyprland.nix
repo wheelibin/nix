@@ -1,7 +1,9 @@
 { pkgs, pkgs-unstable, ... }:
 
-let kenku-fm = pkgs.callPackage ../../pkgs/kenku-fm.nix { };
-in {
+let
+  kenku-fm = pkgs.callPackage ../../pkgs/kenku-fm.nix { };
+in
+{
   imports = [ ./common.nix ];
 
   services.xserver.enable = false;
@@ -17,27 +19,29 @@ in {
   programs.hyprland.enable = true;
   security.pam.services.hyprlock = { };
 
-  environment.systemPackages = (with pkgs; [
-    waybar
-    wofi
-    papirus-icon-theme
-    hyprpaper
-    hypridle
-    hyprlock
-    hyprpolkitagent
-    mako
-    grim
-    slurp
-    wl-clipboard
-    brightnessctl
-    pamixer
-    git
-    gnupg
-    gcc
-    pkgs-unstable.sunsetr
-    firefox
-    chromium
-  ]) ++ [ kenku-fm ];
+  environment.systemPackages =
+    (with pkgs; [
+      waybar
+      wofi
+      papirus-icon-theme
+      hyprpaper
+      hypridle
+      hyprlock
+      hyprpolkitagent
+      mako
+      grim
+      slurp
+      wl-clipboard
+      brightnessctl
+      pamixer
+      git
+      gnupg
+      gcc
+      pkgs-unstable.sunsetr
+      firefox
+      chromium
+    ])
+    ++ [ kenku-fm ];
 
   services.greetd = {
     enable = true;
