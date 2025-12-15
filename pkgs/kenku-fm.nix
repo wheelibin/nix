@@ -1,6 +1,21 @@
-{ lib, stdenv, fetchurl, autoPatchelfHook, binutils, zstd, alsa-lib, libX11
-, libXcursor, libXi, libXrandr, libXrender, libXScrnSaver, libXtst, nss, gtk3
-, mesa # NEW
+{
+  lib,
+  stdenv,
+  fetchurl,
+  autoPatchelfHook,
+  binutils,
+  zstd,
+  alsa-lib,
+  libX11,
+  libXcursor,
+  libXi,
+  libXrandr,
+  libXrender,
+  libXScrnSaver,
+  libXtst,
+  nss,
+  gtk3,
+  mesa, # NEW
 }:
 
 stdenv.mkDerivation rec {
@@ -8,13 +23,16 @@ stdenv.mkDerivation rec {
   version = "1.5.4";
 
   src = fetchurl {
-    url =
-      "https://github.com/owlbear-rodeo/kenku-fm/releases/download/v${version}/kenku-fm_${version}_amd64.deb";
+    url = "https://github.com/owlbear-rodeo/kenku-fm/releases/download/v${version}/kenku-fm_${version}_amd64.deb";
     sha256 = "888b56c7eaefd2339305c3da6b789e09fdbc388fc7bdc9d18c6ab1130d0ed1c5";
   };
 
   # add zstd here so tar can handle data.tar.zst
-  nativeBuildInputs = [ autoPatchelfHook binutils zstd ];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    binutils
+    zstd
+  ];
 
   buildInputs = [
     alsa-lib
