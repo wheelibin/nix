@@ -10,6 +10,7 @@
     gotools
     golangci-lint
     golines
+    go-task
   ];
 
   programs.zsh = {
