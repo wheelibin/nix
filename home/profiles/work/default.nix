@@ -11,6 +11,7 @@
     ../../programs/languages
     ../../programs/desktop/fonts.nix
     ../../programs/terminal/ghostty.nix
+    ../../programs/ai/claude.nix
   ];
 
   xdg.enable = true;
