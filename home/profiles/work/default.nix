@@ -10,6 +10,7 @@
     ../../programs/desktop/bruno.nix
     ../../programs/languages
     ../../programs/desktop/fonts.nix
+    ../../programs/terminal/ghostty.nix
   ];
 
   xdg.enable = true;

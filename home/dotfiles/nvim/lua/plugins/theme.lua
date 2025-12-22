@@ -56,7 +56,7 @@ return {
     "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup({
-        theme = "dragon",
+        -- theme = "dragon",
         transparent = true,
         colors = {
           theme = {
@@ -96,7 +96,7 @@ return {
   --         transparency = true,
   --       },
   --     })
-  --     -- vim.cmd('colorscheme rose-pine')
+  --     vim.cmd('colorscheme rose-pine')
   --   end,
   -- },
   -- {
