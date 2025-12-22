@@ -77,7 +77,6 @@ return {
 
       local config = {
         options = {
-          theme = "kanagawa",
           disabled_filetypes = { 'neo-tree' },
         },
         sections = {
