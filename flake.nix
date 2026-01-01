@@ -47,6 +47,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.jon = import ./home/profiles/jon_nix;
               home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
+              nixpkgs.config.allowUnfree = true;
             }
           ];
         };
