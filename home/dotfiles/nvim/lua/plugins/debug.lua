@@ -1,7 +1,7 @@
 return {
   {
-    'rcarriga/nvim-dap-ui',
-    lazy = true,
+    'igorlfs/nvim-dap-view',
+    lazy = false,
     dependencies = {
       { 'leoluz/nvim-dap-go' },
       {
@@ -16,28 +16,28 @@ return {
           require('dap-go').setup()
         end
       },
-      "nvim-neotest/nvim-nio"
+      -- "nvim-neotest/nvim-nio"
     },
     keys = {
-      { '<Leader>b',  function() require('dap').toggle_breakpoint() end, desc = "DAP continue" },
-      { '<Leader>dr', function() require('dap').repl.open() end,         desc = "DAP repl open" },
-      { '<F5>',       function() require('dap').continue() end,          desc = "DAP continue" },
-      { '<F10>',      function() require('dap').step_over() end,         desc = "DAP step over" },
-      { '<F11>',      function() require('dap').step_into() end,         desc = "DAP step into" },
-      { '<F12>',      function() require('dap').step_out() end,          desc = "DAP step out" },
+      { '<Leader>b', function() require('dap').toggle_breakpoint() end, desc = "DAP continue" },
+      { '<F5>',      function() require('dap').continue() end,          desc = "DAP continue" },
+      { '<F10>',     function() require('dap').step_over() end,         desc = "DAP step over" },
+      { '<F11>',     function() require('dap').step_into() end,         desc = "DAP step into" },
+      { '<F12>',     function() require('dap').step_out() end,          desc = "DAP step out" },
     },
 
     config = function()
-      require("dapui").setup()
-      local dap, dapui = require("dap"), require("dapui")
+      local dap, dapView = require("dap"), require("dap-view")
+      dapView.setup()
+
       dap.listeners.after.event_initialized["dapui_config"] = function()
-        dapui.open()
+        dapView.open()
       end
       dap.listeners.before.event_terminated["dapui_config"] = function()
-        dapui.close()
+        dapView.close()
       end
       dap.listeners.before.event_exited["dapui_config"] = function()
-        dapui.close()
+        dapView.close()
       end
 
       -- 1) Adapter definition for Go using delve
