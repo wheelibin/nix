@@ -7,7 +7,8 @@ return {
     config = function()
       -- calling `setup` is optional for customization
       local actions = require "fzf-lua.actions"
-      require("fzf-lua").setup({
+      local fzfLua = require("fzf-lua")
+      fzfLua.setup({
         winopts = {
           preview = {
             default = "builtin",
@@ -46,6 +47,7 @@ return {
           },
         },
       })
+      fzfLua.register_ui_select()
     end,
     keys = {
       {
