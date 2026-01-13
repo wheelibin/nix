@@ -82,6 +82,18 @@ return {
           mode = "test",
           program = "./...",
         },
+        {
+          type = "go",
+          name = "Debug single test (file)",
+          request = "launch",
+          mode = "test",
+          program = "${file}",
+          args = function()
+            local test = vim.fn.input("Test name (regex): ")
+            return { "-test.run", test }
+          end,
+        },
+
       }
     end
   }
