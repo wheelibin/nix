@@ -52,25 +52,25 @@ return {
   --     -- vim.cmd("colorscheme vague")
   --   end
   -- },
-  {
-    "rebelot/kanagawa.nvim",
-    config = function()
-      require("kanagawa").setup({
-        -- theme = "dragon",
-        transparent = true,
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "none",
-              },
-            },
-          },
-        },
-      })
-      vim.cmd.colorscheme('kanagawa')
-    end,
-  },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   config = function()
+  --     require("kanagawa").setup({
+  --       -- theme = "dragon",
+  --       transparent = true,
+  --       colors = {
+  --         theme = {
+  --           all = {
+  --             ui = {
+  --               bg_gutter = "none",
+  --             },
+  --           },
+  --         },
+  --       },
+  --     })
+  --     vim.cmd.colorscheme('kanagawa')
+  --   end,
+  -- },
   -- {
   --   "EdenEast/nightfox.nvim",
   --   name = "theme: nightfox",
@@ -84,21 +84,21 @@ return {
   --     -- vim.cmd('colorscheme carbonfox')
   --   end,
   -- },
-  -- {
-  --   "rose-pine/neovim",
-  --   name = "theme: rose-pine",
-  --   config = function()
-  --     require("rose-pine").setup({
-  --       -- variant = "moon",
-  --       styles = {
-  --         bold = true,
-  --         italic = true,
-  --         transparency = true,
-  --       },
-  --     })
-  --     vim.cmd('colorscheme rose-pine')
-  --   end,
-  -- },
+  {
+    "rose-pine/neovim",
+    name = "theme: rose-pine",
+    config = function()
+      require("rose-pine").setup({
+        -- variant = "moon",
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
+        },
+      })
+      vim.cmd('colorscheme rose-pine')
+    end,
+  },
   -- {
   --   "sainnhe/gruvbox-material",
   --   name = "theme: gruvbox-material",
