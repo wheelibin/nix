@@ -16,14 +16,12 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       {
-        plugin = kanagawa;
+        plugin = rose-pine;
         extraConfig = ''
-          set -g @kanagawa-ignore-window-colors true
-          set -g @kanagawa-theme 'dragon'
-          set -g @kanagawa-show-battery false
-          set -g @kanagawa-show-powerline true
-          set -g @kanagawa-refresh-rate 10
-          set -g @kanagawa-plugins "time git"
+         set -g @rose_pine_variant 'main'
+         set -g @rose_pine_disable_active_window_menu 'on'
+         set -g @rose_pine_show_current_program 'on'
+         set -g @rose_pine_show_pane_directory 'on'
         '';
       }
     ];
