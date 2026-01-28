@@ -10,7 +10,6 @@
     pgformatter
     nixfmt
     nixfmt-tree # for formatting whole directories
-    mdformat
     chafa # for image previews in fzf-lua
   ];
 
