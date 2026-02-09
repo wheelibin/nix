@@ -144,7 +144,7 @@ return {
         "<leader>tr",
         mode = "n",
         function() require('fzf-lua').resume() end,
-        desc = "Telescope resume"
+        desc = "Resume last search"
       },
       {
         "<leader>fm",

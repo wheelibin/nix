@@ -10,8 +10,8 @@ vim.keymap.set("n", '<M-S-e>', ':wincmd s<CR>:wincmd k<CR>', { desc = 'New windo
 vim.keymap.set("n", '<M-S-i>', ':wincmd v<CR>', { desc = 'New window right' })
 
 -- resize windows
-vim.keymap.set("n", '<M-S-m>', ':5wincmd ><CR>', { desc = 'Make window narrower' })
-vim.keymap.set("n", '<M-S-k>', ':5wincmd <<CR>', { desc = 'Make window wider' })
+vim.keymap.set("n", '<M-C-i>', ':5wincmd ><CR>', { desc = 'Make window wider' })
+vim.keymap.set("n", '<M-C-m>', ':5wincmd <<CR>', { desc = 'Make window narrower' })
 
 -- move lines
 vim.keymap.set("n", '<C-up>', ':m .-2<CR>==', { desc = 'Move line up' })

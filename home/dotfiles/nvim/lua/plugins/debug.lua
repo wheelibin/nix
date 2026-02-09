@@ -1,7 +1,6 @@
 return {
   {
     'igorlfs/nvim-dap-view',
-    lazy = false,
     dependencies = {
       { 'leoluz/nvim-dap-go' },
       {
@@ -19,7 +18,7 @@ return {
       -- "nvim-neotest/nvim-nio"
     },
     keys = {
-      { '<Leader>b', function() require('dap').toggle_breakpoint() end, desc = "DAP continue" },
+      { '<Leader>b', function() require('dap').toggle_breakpoint() end, desc = "Toggle breakpoint" },
       { '<F5>',      function() require('dap').continue() end,          desc = "DAP continue" },
       { '<F10>',     function() require('dap').step_over() end,         desc = "DAP step over" },
       { '<F11>',     function() require('dap').step_into() end,         desc = "DAP step into" },

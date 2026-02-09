@@ -2,7 +2,6 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     tag = "3.37.0",
-    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",

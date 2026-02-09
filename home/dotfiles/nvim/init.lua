@@ -16,5 +16,4 @@ require("lazy").setup("plugins", {
 
 require('keys')
 require('autocommands')
-require('lsp')
 
