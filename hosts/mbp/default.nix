@@ -12,8 +12,6 @@
   nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
   system.stateVersion = "25.05";
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = [ pkgs.expressvpn ];
 
   services.expressvpn.enable = true;

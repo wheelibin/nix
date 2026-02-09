@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     pgformatter
-    nixfmt
+    nixfmt-rfc-style
     nixfmt-tree # for formatting whole directories
     chafa # for image previews in fzf-lua
   ];

@@ -25,6 +25,13 @@
       linuxSystem = "x86_64-linux";
       darwinSystem = "aarch64-darwin";
 
+      mkPkgs =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
+
       mkSpecialArgs = system: {
         inherit system;
         pkgs-unstable = import nixpkgs-unstable {
@@ -32,6 +39,14 @@
           config.allowUnfree = true;
         };
       };
+
+      mkHomeConfig =
+        system: profile:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = mkPkgs system;
+          extraSpecialArgs = mkSpecialArgs system;
+          modules = [ ./home/profiles/${profile} ];
+        };
     in
     {
       nixosConfigurations = {
@@ -47,33 +62,19 @@
               home-manager.useUserPackages = true;
               home-manager.users.jon = import ./home/profiles/jon_nix;
               home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
-              nixpkgs.config.allowUnfree = true;
             }
           ];
         };
       };
 
       homeConfigurations = {
-        work = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = darwinSystem;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = mkSpecialArgs darwinSystem;
-          modules = [
-            ./home/profiles/work
-          ];
-        };
-        jon_mac = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = darwinSystem;
-            config.allowUnfree = true;
-          };
-          extraSpecialArgs = mkSpecialArgs darwinSystem;
-          modules = [
-            ./home/profiles/jon_mac
-          ];
-        };
+        work = mkHomeConfig darwinSystem "work";
+        jon_mac = mkHomeConfig darwinSystem "jon_mac";
+      };
+
+      formatter = {
+        ${linuxSystem} = nixpkgs.legacyPackages.${linuxSystem}.nixfmt-tree;
+        ${darwinSystem} = nixpkgs.legacyPackages.${darwinSystem}.nixfmt-tree;
       };
     };
 }
