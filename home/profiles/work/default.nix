@@ -6,6 +6,7 @@
     ./packages.nix
     ../../programs/docker
     ../../programs/desktop/bruno.nix
+    ../../programs/desktop/karabiner-elements.nix
     ../../programs/ai/claude.nix
   ];
 
