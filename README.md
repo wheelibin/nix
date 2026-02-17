@@ -35,6 +35,33 @@ Modular NixOS configuration for multiple machines and user profiles.
     └── dotfiles/                  # Config files
 ```
 
+## Bootstrapping a New macOS Machine
+
+### 1. Install Nix
+
+https://install.determinate.systems/determinate-pkg/stable/Universal
+
+### 2. Clone this repository
+
+```bash
+cd ~/dev
+git clone git@github.com:wheelibin/nix.git
+```
+
+### 3. Bootstrap Home Manager
+
+This will apply the home manager profile, installing apps and configs, as well as the `home-manager` command for future updates.
+
+**NOTE: make sure you change the profile name at the end of the command**
+
+```bash
+nix run github:nix-community/home-manager/release-25.11 -- switch --impure --flake ~/dev/nix#work
+```
+
+### 4. Re-applying after changes
+
+After the bootstrap build you can simply run the shell alias `hm` to reapply.
+
 ## Usage
 
 ### NixOS (mbp)
