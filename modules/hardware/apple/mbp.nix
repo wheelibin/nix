@@ -1,8 +1,0 @@
-{ ... }:
-
-{
-  boot.kernelModules = [
-    "applesmc"
-    "coretemp"
-  ];
-}

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../common/darwin.nix
+    ../common
     ./packages.nix
     ../../programs/desktop/karabiner-elements.nix
     ../../programs/ai/claude.nix

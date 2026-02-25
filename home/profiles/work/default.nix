@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../common/darwin.nix
+    ../common
     ./packages.nix
     ../../programs/docker
     ../../programs/desktop/bruno.nix
