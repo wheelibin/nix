@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/dev -mindepth 1 -maxdepth 1 -type d | fzf --reverse)
+    selected=$(ls -td ~/dev/*/ | sed 's:/$::' | fzf --reverse --delimiter '/' --with-nth -1)
 fi
 
 if [[ -z $selected ]]; then
