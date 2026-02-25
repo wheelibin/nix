@@ -1,8 +1,8 @@
 { pkgs, config, ... }:
 
 {
-  home.file.".config/tmux/tmux-session-menu".source = ../../dotfiles/tmux/tmux-session-menu;
-  home.file.".config/tmux/tmux-sessionizer".source = ../../dotfiles/tmux/tmux-sessionizer;
+  home.file.".config/tmux/tmux-session-menu".source = ./tmux-session-menu;
+  home.file.".config/tmux/tmux-sessionizer".source = ./tmux-sessionizer;
 
   programs.tmux = {
     enable = true;

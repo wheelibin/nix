@@ -3,8 +3,8 @@
 {
   imports = [
     ../../programs/shell
-    ../../programs/editors/neovim.nix
-    ../../programs/terminal/ghostty.nix
+    ../../programs/editors/neovim/neovim.nix
+    ../../programs/terminal/ghostty/ghostty.nix
     ../../programs/git
     ../../programs/languages
     ../../programs/desktop/fonts.nix

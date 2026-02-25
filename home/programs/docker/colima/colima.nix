@@ -4,7 +4,7 @@
 
   home.packages = with pkgs; [ colima ];
 
-  home.file.".config/colima/default/colima.yaml".source = ../../dotfiles/colima/colima.yaml;
+  home.file.".config/colima/default/colima.yaml".source = ./colima.yaml;
 
   # prevent colima from writing to the config file on startup
   programs.zsh = {

@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./colima.nix
+    ./colima/colima.nix
     ./docker.nix
     ./k8s.nix
   ];

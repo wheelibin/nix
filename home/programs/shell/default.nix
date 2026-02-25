@@ -10,8 +10,8 @@
     ./jq.nix
     ./lazydocker.nix
     ./ripgrep.nix
-    ./starship.nix
-    ./tmux.nix
+    ./starship/starship.nix
+    ./tmux/tmux.nix
     ./yazi.nix
     ./zsh.nix
   ];

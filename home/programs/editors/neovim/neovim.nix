@@ -13,7 +13,7 @@
     chafa # for image previews in fzf-lua
   ];
 
-  home.file.".config/nvim".source = ../../dotfiles/nvim;
+  home.file.".config/nvim".source = ./config;
 
   programs.zsh = {
     enable = true;
