@@ -8,6 +8,6 @@
 
   # prevent colima from writing to the config file on startup
   home.sessionVariables = {
-    COLIMA_SAVE_CONFIG = "0";
+    COLIMA_SAVE_CONFIG = 0;
   };
 }
