@@ -7,10 +7,7 @@
   home.file.".config/colima/default/colima.yaml".source = ./colima.yaml;
 
   # prevent colima from writing to the config file on startup
-  programs.zsh = {
-    enable = true;
-    initContent = ''
-      export COLIMA_SAVE_CONFIG=0
-    '';
+  home.sessionVariables = {
+    COLIMA_SAVE_CONFIG = "0";
   };
 }

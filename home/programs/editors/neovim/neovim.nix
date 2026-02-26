@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.neovim = {
@@ -15,12 +15,8 @@
 
   home.file.".config/nvim".source = ./config;
 
-  programs.zsh = {
-    enable = true;
-
-    initContent = ''
-      export PATH="$PATH:$HOME/.local/share/nvim/mason/bin"
-    '';
-  };
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/share/nvim/mason/bin"
+  ];
 
 }

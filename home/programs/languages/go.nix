@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
 
@@ -14,13 +14,13 @@
     go-task
   ];
 
-  programs.zsh = {
-    enable = true;
-
-    initContent = ''
-      export GOPATH="$HOME/go"
-      export GOBIN="$GOPATH/bin"
-      export PATH="$GOBIN:$PATH"
-    '';
+  home.sessionVariables = {
+    GOPATH = "${config.home.homeDirectory}/go";
+    GOBIN = "${config.home.homeDirectory}/go/bin";
   };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/go/bin"
+  ];
+
 }
