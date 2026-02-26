@@ -8,7 +8,7 @@
   programs.zsh = {
     enable = true;
     initContent = ''
-      [ -f "$HOME/.zshrc.claude" ] && source "$HOME/.zshrc.claude"
+      [ -f "$HOME/.env.claude" ] && source "$HOME/.env.claude"
     '';
   };
 }
