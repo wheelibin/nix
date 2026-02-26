@@ -4,10 +4,10 @@
   imports = [
     ../common
     ./packages.nix
-    ../../programs/docker
-    ../../programs/desktop/bruno.nix
-    ../../programs/desktop/karabiner-elements.nix
-    ../../programs/ai/claude.nix
+    ../../modules/docker
+    ../../modules/desktop/bruno.nix
+    ../../modules/desktop/karabiner-elements.nix
+    ../../modules/ai/claude.nix
   ];
 
   programs.zsh.shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#work";

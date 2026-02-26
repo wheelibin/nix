@@ -7,21 +7,19 @@ Home Manager configuration for macOS.
 ```
 .
 ├── flake.nix                      # Main entry point
-└── home/                          # Home-manager configurations
-    ├── profiles/                  # User profiles
-    │   ├── common/                # Shared profile config
-    │   │   └── default.nix        # Base config for all profiles
-    │   ├── jon_mac/               # Personal macOS profile
-    │   └── work/                  # Work macOS profile
-    └── programs/                  # Per-program configs
-        ├── shell/
-        ├── editors/
-        ├── terminal/
-        ├── desktop/
-        ├── languages/
-        ├── docker/
-        ├── ai/
-        └── git/
+├── profiles/                      # User profiles
+│   ├── common/                    # Shared profile config
+│   ├── jon_mac/                   # Personal macOS profile
+│   └── work/                      # Work macOS profile
+└── modules/                       # Home Manager modules
+    ├── shell/
+    ├── editors/
+    ├── terminal/
+    ├── desktop/
+    ├── languages/
+    ├── docker/
+    ├── ai/
+    └── git/
 ```
 
 ## Bootstrapping a New macOS Machine
@@ -74,12 +72,12 @@ nix fmt
 
 ### Add a new profile
 
-1. Create `home/profiles/username/default.nix`
+1. Create `profiles/username/default.nix`
 2. Import `../common` for shared base config
 3. Add profile-specific imports and settings
 4. Add to `flake.nix` under `homeConfigurations`
 
 ### Add packages
 
-- **User-specific**: Add to `home/profiles/username/packages.nix`
-- **New program config**: Create module in `home/programs/`
+- **User-specific**: Add to `profiles/username/packages.nix`
+- **New module**: Create module in `modules/`

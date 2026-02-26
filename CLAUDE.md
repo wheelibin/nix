@@ -23,16 +23,16 @@ nix flake check
 
 This is a Nix flake configuration for standalone Home Manager on macOS.
 
-### Module Organization
+### Directory Structure
 
-- `home/programs/` - Home Manager program modules (shell tools, editors, languages)
-- `home/profiles/` - User profiles that compose program modules
+- `profiles/` - User profiles that compose home modules
+- `modules/` - Home Manager modules (shell, editors, languages, etc.)
 
 ### Profile Inheritance
 
-Profiles inherit from `home/profiles/common` which provides:
-- Common program imports (shell, neovim, ghostty, git, languages, fonts)
+Profiles inherit from `profiles/common` which provides:
+- Common module imports (shell, neovim, ghostty, git, languages, fonts)
 - XDG, username/home directory setup
 - SSH configuration
 
-Individual profiles (`jon_mac`, `work`) add their specific packages and program imports on top.
+Individual profiles (`jon_mac`, `work`) add their specific packages and module imports on top.
