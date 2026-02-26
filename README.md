@@ -62,6 +62,8 @@ home-manager switch --impure --flake .#mac_work
 nix flake update
 ```
 
+This updates all flake inputs (nixpkgs, home-manager, etc.) to their latest versions and regenerates `flake.lock`. Run `home-manager switch` afterwards to apply the updates.
+
 ### Format nix files
 
 ```bash
