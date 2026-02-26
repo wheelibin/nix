@@ -18,5 +18,6 @@
   home.packages = with pkgs; [
     git-lfs
     gh
+    git-filter-repo
   ];
 }
