@@ -4,7 +4,6 @@
   imports = [
     ../common
     ./packages.nix
-    ../../modules/docker
     ../../modules/desktop/bruno.nix
     ../../modules/desktop/karabiner-elements.nix
     ../../modules/ai/claude.nix

@@ -2,12 +2,13 @@
 
 {
   imports = [
-    ../../modules/shell
+    ../../modules/desktop/fonts.nix
+    ../../modules/docker
     ../../modules/editors/neovim/neovim.nix
-    ../../modules/terminal/ghostty/ghostty.nix
     ../../modules/git
     ../../modules/languages
-    ../../modules/desktop/fonts.nix
+    ../../modules/shell
+    ../../modules/terminal/ghostty/ghostty.nix
   ];
 
   xdg.enable = true;
