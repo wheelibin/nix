@@ -33,16 +33,16 @@
     in
     {
       homeConfigurations = {
-        jon_mac = home-manager.lib.homeManagerConfiguration {
+        mac_home = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit system pkgs-unstable; };
-          modules = [ ./profiles/jon_mac ];
+          modules = [ ./profiles/mac_home ];
         };
 
-        work = home-manager.lib.homeManagerConfiguration {
+        mac_work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit system pkgs-unstable; };
-          modules = [ ./profiles/work ];
+          modules = [ ./profiles/mac_work ];
         };
       };
 

@@ -10,5 +10,5 @@
     ../../modules/ai/claude.nix
   ];
 
-  programs.zsh.shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#work";
+  programs.zsh.shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#mac_work";
 }

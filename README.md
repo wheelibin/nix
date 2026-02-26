@@ -9,8 +9,8 @@ Home Manager configuration for macOS.
 ├── flake.nix                      # Main entry point
 ├── profiles/                      # User profiles
 │   ├── common/                    # Shared profile config
-│   ├── jon_mac/                   # Personal macOS profile
-│   └── work/                      # Work macOS profile
+│   ├── mac_home/                  # Personal macOS profile
+│   └── mac_work/                  # Work macOS profile
 └── modules/                       # Home Manager modules
     ├── shell/
     ├── editors/
@@ -42,7 +42,7 @@ This will apply the home manager profile, installing apps and configs, as well a
 **NOTE: make sure you change the profile name at the end of the command**
 
 ```bash
-nix run github:nix-community/home-manager/release-25.11 -- switch --impure --flake ~/dev/nix#work
+nix run github:nix-community/home-manager/release-25.11 -- switch --impure --flake ~/dev/nix#mac_home
 ```
 
 ### 4. Re-applying after changes
@@ -52,8 +52,8 @@ After the bootstrap build you can simply run the shell alias `hm` to reapply.
 ## Usage
 
 ```bash
-home-manager switch --impure --flake .#jon_mac
-home-manager switch --impure --flake .#work
+home-manager switch --impure --flake .#mac_home
+home-manager switch --impure --flake .#mac_work
 ```
 
 ### Update flake inputs

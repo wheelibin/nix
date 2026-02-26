@@ -6,8 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Home Manager (macOS)
-home-manager switch --impure --flake .#jon_mac
-home-manager switch --impure --flake .#work
+home-manager switch --impure --flake .#mac_home
+home-manager switch --impure --flake .#mac_work
 
 # Update flake inputs
 nix flake update
@@ -35,4 +35,4 @@ Profiles inherit from `profiles/common` which provides:
 - XDG, username/home directory setup
 - SSH configuration
 
-Individual profiles (`jon_mac`, `work`) add their specific packages and module imports on top.
+Individual profiles (`mac_home`, `mac_work`) add their specific packages and module imports on top.
