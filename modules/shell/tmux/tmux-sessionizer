@@ -1,30 +1,54 @@
 #!/usr/bin/env bash
 
+# tmux-sessionizer: Quickly create or switch to project-specific tmux sessions
+#
+# Usage:
+#   tmux-sessionizer [path]    - Create/switch to session for given path
+#   tmux-sessionizer           - Use fzf to select from ~/dev/ directories
+#
+# Each session opens with nvim in the top pane (80%) and a shell in the bottom (20%)
+
+# Get project directory: either from argument or via fzf selection
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
+    # List ~/dev/ directories sorted by modification time, pick one with fzf
     selected=$(ls -td ~/dev/*/ | sed 's:/$::' | fzf --reverse --delimiter '/' --with-nth -1)
 fi
 
+# Exit if no selection was made (user cancelled fzf)
 if [[ -z $selected ]]; then
     exit 0
 fi
 
+# Create session name from directory basename (replace dots with underscores for tmux compatibility)
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+# Case 1: No tmux running at all - start fresh with a new attached session
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     tmux new-session -s $selected_name -c $selected
 fi
 
+# Case 2: tmux is running - create detached session if it doesn't exist
+new_session=0
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
-    # open editor
-    tmux send-keys "nvim" C-m
-    # add lower split with 20% height
-    tmux split-window -v -l 20 -c $selected
-    # select editor pane
-    tmux select-pane -t 1
+    new_session=1
 fi
 
+# Switch to the session (works whether we're inside tmux or not)
 tmux switch-client -t $selected_name
+
+# Set up the session layout for newly created sessions
+# NOTE: This must happen AFTER switch-client because tmux needs to know the
+# terminal dimensions to calculate percentage-based splits correctly.
+# Splitting a detached session ignores -p percentage values.
+if [[ $new_session -eq 1 ]]; then
+    # Start nvim in the main pane
+    tmux send-keys "nvim" C-m
+    # Create bottom pane (20% height) for shell commands
+    tmux split-window -v -p 20 -c "$selected"
+    # Move focus back to the editor pane
+    tmux select-pane -U
+fi
