@@ -69,6 +69,13 @@ in
             desc = "Reveal in Finder";
           }
         ];
+
+        extract = [
+          {
+            run = ''unzip "$@"'';
+            desc = "Extract zip";
+          }
+        ];
       };
 
       open = {
@@ -122,7 +129,6 @@ in
             name = "*.js";
             use = [ "edit" ];
           }
-
           {
             mime = "image/*";
             use = [ "open" ];
@@ -130,6 +136,10 @@ in
           {
             mime = "application/pdf";
             use = [ "open" ];
+          }
+          {
+            mime = "application/zip";
+            use = [ "extract" ];
           }
         ];
       };
