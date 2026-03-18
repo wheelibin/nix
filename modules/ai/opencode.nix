@@ -4,8 +4,9 @@ let
   superpowers = pkgs.fetchFromGitHub {
     owner = "obra";
     repo = "superpowers";
-    rev = "363923f74aa9cd7b470c0aaa73dee629a8bfdc90";
-    hash = "sha256-AyRGXwWI9xHGeHw9vD64cnV19txR/lOtxudcHnbV75I=";
+    rev = "v5.0.5";
+    # hash = pkgs.lib.fakeHash;
+    hash = "sha256-Yq7y6VDrREV60WpfaGsYdnWqoaS7g1hrtci4bGtgtZM=";
   };
 in
 {
