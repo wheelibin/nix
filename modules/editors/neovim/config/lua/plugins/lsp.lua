@@ -49,7 +49,6 @@ return {
         opts = {
           ensure_installed = {
             "basedpyright",
-            "golangci_lint_ls",
             "gopls",
             "html",
             "jsonls",
@@ -61,7 +60,7 @@ return {
           automatic_installation = true,
         },
       },
-      { "j-hui/fidget.nvim", opts = {} },
+      -- { "j-hui/fidget.nvim", opts = {} },
     },
     config = function()
       vim.lsp.config("*", {

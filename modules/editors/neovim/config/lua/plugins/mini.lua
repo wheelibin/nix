@@ -2,17 +2,46 @@ return {
   {
     'echasnovski/mini.nvim',
     config = function()
+      -- icons
+      require('mini.icons').setup({
+        filetype = {
+          cucumber = { glyph = require('mini.icons').get('file', 'CHANGELOG.md') },
+        },
+      })
+
+      -- git
+      require('mini.git').setup()
+      vim.keymap.set({ 'n', 'x' }, '<Leader>gs', '<Cmd>lua MiniGit.show_at_cursor()<CR>', { desc = 'Show at cursor' })
+      vim.keymap.set({ 'n' }, '<Leader>gb', '<Cmd>vertical Git blame -- %<CR>', { desc = 'Git blame' })
+      local align_blame = function(au_data)
+        if au_data.data.git_subcommand ~= 'blame' then return end
+
+        -- Align blame output with source
+        local win_src = au_data.data.win_source
+        vim.wo.wrap = false
+        vim.fn.winrestview({ topline = vim.fn.line('w0', win_src) })
+        vim.api.nvim_win_set_cursor(0, { vim.fn.line('.', win_src), 0 })
+
+        -- Bind both windows so that they scroll together
+        vim.wo[win_src].scrollbind, vim.wo.scrollbind = true, true
+      end
+
+      local au_opts = { pattern = 'MiniGitCommandSplit', callback = align_blame }
+      vim.api.nvim_create_autocmd('User', au_opts)
+
+      require('mini.diff').setup()
+      vim.keymap.set({ 'n' }, ']c', '<Cmd>lua MiniDiff.goto_hunk("next", {wrap=true})<CR>',
+        { desc = 'Goto next change/hunk (GIT)' })
+      vim.keymap.set({ 'n' }, '[c', '<Cmd>lua MiniDiff.goto_hunk("prev", {wrap=true})<CR>',
+        { desc = 'Goto prev change/hunk (GIT)' })
+      vim.keymap.set({ 'n' }, '<Leader>gp', '<Cmd>lua MiniDiff.toggle_overlay()<CR>',
+        { desc = 'Preview buffer changes (GIT)' })
+
       -- code commenting
       require('mini.comment').setup()
 
       -- highlight word under cursor
       require('mini.cursorword').setup({ delay = 400 })
-
-      -- require('mini.animate').setup({
-      --   -- scroll = { timing = function() return 2 end },
-      --   scroll = { enable = false },
-      --   resize = { enable = false }
-      -- })
 
       -- remove buffers retaining window layout
       require('mini.bufremove').setup()
@@ -21,60 +50,27 @@ return {
       -- smart aligning
       require('mini.align').setup()
 
-      -- sensible default options
-      -- require('mini.basics').setup()
+      -- status bar
+      require('mini.statusline').setup()
+      local f = function(args) vim.b[args.buf].ministatusline_disable = true end
+      vim.api.nvim_create_autocmd('Filetype', { pattern = 'neo-tree', callback = f })
 
-      -- require('mini.files').setup({
-      --   -- content = {
-      --   --   -- Predicate for which file system entries to show
-      --   --   filter = nil,
-      --   --   -- What prefix to show to the left of file system entry
-      --   --   prefix = nil,
-      --   --   -- In which order to show file system entries
-      --   --   sort = nil,
-      --   -- },
+      -- notify
+      require('mini.notify').setup()
       --
-      --   -- Module mappings created only inside explorer.
-      --   -- Use `''` (empty string) to not create one.
-      --   mappings = {
-      --     close       = 'q',
-      --     go_in       = 'i',
-      --     go_in_plus  = 'I',
-      --     go_out      = 'm',
-      --     go_out_plus = 'M',
-      --     mark_goto   = "'",
-      --     mark_set    = 'b',
-      --     reset       = '<BS>',
-      --     reveal_cwd  = '@',
-      --     show_help   = 'g?',
-      --     synchronize = '=',
-      --     trim_left   = '<',
-      --     trim_right  = '>',
-      --   },
-      --
-      --   -- -- General options
-      --   -- options = {
-      --   --   -- Whether to delete permanently or move into module-specific trash
-      --   --   permanent_delete = true,
-      --   --   -- Whether to use for editing directories
-      --   --   use_as_default_explorer = true,
-      --   -- },
-      --   --
-      --   -- -- Customization of explorer windows
-      --   -- windows = {
-      --   --   -- Maximum number of windows to show side by side
-      --   --   max_number = math.huge,
-      --   --   -- Whether to show preview of file/directory under cursor
-      --   --   preview = false,
-      --   --   -- Width of focused window
-      --   --   width_focus = 50,
-      --   --   -- Width of non-focused window
-      --   --   width_nofocus = 15,
-      --   --   -- Width of preview window
-      --   --   width_preview = 25,
-      --   -- },
-      -- })
-      -- vim.keymap.set("n", "<leader>fu", "<cmd>lua MiniFiles.open()<cr>", { desc = 'Mini Files' })
+      -- auto pairs
+      require('mini.pairs').setup()
+
+      -- surround actions (saiw etc)
+      require('mini.surround').setup()
+
+      -- todo comments
+      local hi_words = require('mini.extra').gen_highlighter.words
+      require('mini.hipatterns').setup({
+        highlighters = {
+          todo = hi_words({ 'TODO', 'Todo', 'todo' }, 'MiniHipatternsTodo'),
+        },
+      })
     end
   }
 }

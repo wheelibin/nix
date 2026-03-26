@@ -64,7 +64,7 @@
       # utils
       bind-key "M-space" display-popup -E -w 128 -h 32 -b "rounded" "~/.config/tmux/tmux-session-menu"
       bind -r f display-popup -E -w 48 -h 24 -b "rounded" "~/.config/tmux/tmux-sessionizer"
-      bind -r g display-popup -h 80% -w 80% -E "lazygit"
+      bind -r g display-popup -h 80% -w 80% -d "#{pane_current_path}" -E "lazygit"
 
     '';
   };

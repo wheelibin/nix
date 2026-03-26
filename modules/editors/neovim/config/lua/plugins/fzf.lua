@@ -3,7 +3,7 @@ return {
     "ibhagwan/fzf-lua",
     lazy = true,
     -- optional for icon support
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.icons" },
     config = function()
       -- calling `setup` is optional for customization
       local actions = require "fzf-lua.actions"
@@ -176,12 +176,12 @@ return {
         function() require('fzf-lua').lgrep_curbuf() end,
         desc = "Fuzzy find in current buffer"
       },
-      {
-        "<leader>gb",
-        mode = "n",
-        function() require('fzf-lua').git_blame() end,
-        desc = "Git Blame (git)"
-      },
+      -- {
+      --   "<leader>gb",
+      --   mode = "n",
+      --   function() require('fzf-lua').git_blame() end,
+      --   desc = "Git Blame (git)"
+      -- },
 
       -- {
       --   "<leader>/",
