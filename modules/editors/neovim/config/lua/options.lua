@@ -73,7 +73,7 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
 
-opt.conceallevel = 2
+opt.conceallevel = 0
 
 opt.winborder = 'rounded'
 
