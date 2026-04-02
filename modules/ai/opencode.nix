@@ -1,4 +1,9 @@
-{ pkgs, pkgs-unstable, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  config,
+  ...
+}:
 
 {
   programs.opencode = {
@@ -13,6 +18,17 @@
           profile = "bedrock";
         };
       };
+      mcp.fff = {
+        type = "local";
+        command = [ "fff-mcp" ];
+        enabled = true;
+      };
+      instructions = [ "~/.config/opencode/fff.md" ];
     };
   };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
+  ];
+
 }
