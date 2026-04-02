@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs-unstable, config, ... }:
 
 {
   programs.neovim = {
@@ -6,7 +6,7 @@
     defaultEditor = true;
   };
 
-  home.packages = with pkgs; [
+  home.packages = with pkgs-unstable; [
     pgformatter
     nixfmt-rfc-style
     nixfmt-tree # for formatting whole directories
