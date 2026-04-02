@@ -57,6 +57,19 @@ local function setup_ui()
       todo = hi_words({ 'TODO', 'Todo', 'todo' }, 'MiniHipatternsTodo'),
     },
   })
+  local starter = require('mini.starter')
+  starter.setup({
+    header = table.concat({
+      '   ____  ___  ____ _   __(_)___ ___',
+      '  / __ \\/ _ \\/ __ \\ | / / / __ `__ \\',
+      ' / / / /  __/ /_/ / |/ / / / / / / /',
+      '/_/ /_/\\___/\\____/|___/_/_/ /_/ /_/',
+    }, '\n'),
+    items = { starter.sections.recent_files(10, true) },
+    footer = '"Don\'t Panic"',
+  })
+  vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = '#938aa9' })  -- Kanagawa oniViolet
+  vim.api.nvim_set_hl(0, 'MiniStarterFooter', { fg = '#727169' })  -- Kanagawa fujiGray
 end
 
 local function setup_completion()
