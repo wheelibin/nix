@@ -50,24 +50,24 @@ return {
       fzfLua.register_ui_select()
     end,
     keys = {
-      {
-        "<leader>ff",
-        mode = "n",
-        function() require('fzf-lua').files({ path_shorten = 8 }) end,
-        desc = "Find files"
-      },
+      -- {
+      --   "<leader>ff",
+      --   mode = "n",
+      --   function() require('fzf-lua').files({ path_shorten = 8 }) end,
+      --   desc = "Find files"
+      -- },
       {
         "<leader>fo",
         mode = "n",
         function() require('fzf-lua').oldfiles({ path_shorten = 8 }) end,
         desc = "Find previously opened files"
       },
-      {
-        "<leader>fa",
-        mode = "n",
-        function() require('fzf-lua').live_grep_native({ path_shorten = 8 }) end,
-        desc = "Find text (grep)"
-      },
+      -- {
+      --   "<leader>fa",
+      --   mode = "n",
+      --   function() require('fzf-lua').live_grep_native({ path_shorten = 8 }) end,
+      --   desc = "Find text (grep)"
+      -- },
       {
         "<leader><space>",
         mode = "n",
@@ -128,12 +128,12 @@ return {
         function() require('fzf-lua').grep_cword() end,
         desc = "Find word under cursor"
       },
-      {
-        "<leader>fw",
-        mode = "v",
-        function() require('fzf-lua').grep_visual() end,
-        desc = "Find selection"
-      },
+      -- {
+      --   "<leader>fw",
+      --   mode = "v",
+      --   function() require('fzf-lua').grep_visual() end,
+      --   desc = "Find selection"
+      -- },
       {
         "<leader>re",
         mode = "n",
