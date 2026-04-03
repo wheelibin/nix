@@ -81,10 +81,9 @@ local function setup_ui()
     },
   })
 
-  -- Indent scope line (exponential animation, muted Kanagawa color)
+  -- Indent scope line (no animation, dimmed color pulled from Comment fg)
   require('mini.indentscope').setup()
   MiniIndentscope.config.draw.animation = MiniIndentscope.gen_animation.none()
-  vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#727169' }) -- Kanagawa fujiGray
 
   -- Start screen
   local starter = require('mini.starter')
@@ -98,8 +97,17 @@ local function setup_ui()
     items = { starter.sections.recent_files(10, true) },
     footer = '"Don\'t Panic"',
   })
-  vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = '#938aa9' }) -- Kanagawa oniViolet
-  vim.api.nvim_set_hl(0, 'MiniStarterFooter', { fg = '#727169' }) -- Kanagawa fujiGray
+
+  -- Apply theme-derived highlights; called once now and again on colorscheme change
+  local function apply_hl()
+    local muted  = vim.api.nvim_get_hl(0, { name = 'Comment', link = false }).fg
+    local accent = vim.api.nvim_get_hl(0, { name = 'Title', link = false }).fg
+    vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = muted })
+    vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = accent })
+    vim.api.nvim_set_hl(0, 'MiniStarterFooter', { fg = muted })
+  end
+  apply_hl()
+  vim.api.nvim_create_autocmd('ColorScheme', { callback = apply_hl })
 end
 
 -- ── Completion + Snippets ─────────────────────────────────────────────────────
@@ -121,7 +129,7 @@ local function setup_completion()
   require('mini.completion').setup()
   vim.opt.completeopt = { 'menuone', 'noinsert', 'fuzzy' }
 
-  -- Disable completion in picker prompt buffers (fzf-lua, fff, etc.) where
+  -- Disable completion in picker prompt buffers (mini.pick, fff, etc.) where
   -- the built-in popup would interfere with the picker UI
   vim.api.nvim_create_autocmd({ 'BufEnter', 'FileType' }, {
     callback = function(args)
@@ -132,6 +140,52 @@ local function setup_completion()
       end
     end,
   })
+end
+
+-- ── Pickers (mini.pick + mini.extra) ─────────────────────────────────────────
+
+local function setup_pick()
+  require('mini.pick').setup({
+    window = {
+      config = function()
+        local height = math.floor(0.618 * vim.o.lines)
+        local width  = math.floor(0.618 * vim.o.columns)
+        return {
+          anchor = 'NW',
+          row    = math.floor((vim.o.lines   - height) / 2),
+          col    = math.floor((vim.o.columns - width)  / 2),
+          height = height,
+          width  = width,
+        }
+      end,
+    },
+  })
+  -- Register as the vim.ui.select provider (used by LSP code actions etc.)
+  vim.ui.select = MiniPick.ui_select
+
+  local pick  = require('mini.pick').builtin
+  local extra = require('mini.extra').pickers
+
+  vim.keymap.set('n', '<leader>fo', function() extra.oldfiles({ current_dir = true }) end, { desc = 'Find previously opened files' })
+
+  vim.keymap.set('n', '<leader><space>', function() pick.buffers() end, { desc = 'Find buffers' })
+
+  vim.keymap.set('n', '<leader>fr', function() extra.lsp({ scope = 'references' }) end,
+    { desc = 'Find references (LSP)' })
+
+  vim.keymap.set('n', 'gi', function() extra.lsp({ scope = 'implementation' }) end,
+    { desc = 'Find implementations (LSP)' })
+
+  vim.keymap.set('n', '<leader>fh', function() extra.git_commits({ path = vim.fn.expand('%') }) end,
+    { desc = 'File history (git)' })
+
+  vim.keymap.set('n', '<leader>re', function() extra.registers() end, { desc = 'View registers' })
+
+  vim.keymap.set('n', '<leader>tr', function() pick.resume() end, { desc = 'Resume last search' })
+
+  -- Code actions use vim.ui.select, which is handled by mini.pick via ui_select()
+  vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end,
+    { desc = 'Code actions (LSP)' })
 end
 
 -- ── Keymaps ───────────────────────────────────────────────────────────────────
@@ -160,6 +214,7 @@ return {
       setup_editing()
       setup_ui()
       setup_completion()
+      setup_pick()
       setup_keymap()
     end,
   },
