@@ -57,6 +57,12 @@ local function setup_ui()
       todo = hi_words({ 'TODO', 'Todo', 'todo' }, 'MiniHipatternsTodo'),
     },
   })
+
+  require('mini.indentscope').setup()
+  MiniIndentscope.config.draw.animation = MiniIndentscope.gen_animation.exponential({ duration = 10 })
+  vim.api.nvim_set_hl(0, 'MiniIndentscopeSymbol', { fg = '#727169' })   -- Kanagawa fujiGray
+
+
   local starter = require('mini.starter')
   starter.setup({
     header = table.concat({
@@ -68,8 +74,8 @@ local function setup_ui()
     items = { starter.sections.recent_files(10, true) },
     footer = '"Don\'t Panic"',
   })
-  vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = '#938aa9' })  -- Kanagawa oniViolet
-  vim.api.nvim_set_hl(0, 'MiniStarterFooter', { fg = '#727169' })  -- Kanagawa fujiGray
+  vim.api.nvim_set_hl(0, 'MiniStarterHeader', { fg = '#938aa9' }) -- Kanagawa oniViolet
+  vim.api.nvim_set_hl(0, 'MiniStarterFooter', { fg = '#727169' }) -- Kanagawa fujiGray
 end
 
 local function setup_completion()

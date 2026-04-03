@@ -2,6 +2,7 @@
     "diagnostics.globals": [
         "vim",
         "MiniIcons",
-        "MiniSnippets"
+        "MiniSnippets",
+        "MiniIndentscope"
     ]
 }
