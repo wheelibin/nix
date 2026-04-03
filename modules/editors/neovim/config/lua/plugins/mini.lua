@@ -142,6 +142,12 @@ local function setup_completion()
   })
 end
 
+-- ── Visits ────────────────────────────────────────────────────────────────────
+
+local function setup_visits()
+  require('mini.visits').setup()
+end
+
 -- ── Pickers (mini.pick + mini.extra) ─────────────────────────────────────────
 
 local function setup_pick()
@@ -152,8 +158,8 @@ local function setup_pick()
         local width  = math.floor(0.618 * vim.o.columns)
         return {
           anchor = 'NW',
-          row    = math.floor((vim.o.lines   - height) / 2),
-          col    = math.floor((vim.o.columns - width)  / 2),
+          row    = math.floor((vim.o.lines - height) / 2),
+          col    = math.floor((vim.o.columns - width) / 2),
           height = height,
           width  = width,
         }
@@ -163,10 +169,22 @@ local function setup_pick()
   -- Register as the vim.ui.select provider (used by LSP code actions etc.)
   vim.ui.select = MiniPick.ui_select
 
-  local pick  = require('mini.pick').builtin
-  local extra = require('mini.extra').pickers
+  local pick    = require('mini.pick').builtin
+  local extra   = require('mini.extra').pickers
 
-  vim.keymap.set('n', '<leader>fo', function() extra.oldfiles({ current_dir = true }) end, { desc = 'Find previously opened files' })
+  vim.keymap.set('n', '<leader>fo', function() extra.oldfiles({ current_dir = true }) end,
+    { desc = 'Find previously opened files' })
+  vim.keymap.set('n', '<BS><BS>', function()
+    local cwd = vim.uv.cwd()
+    local cur = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
+    extra.visit_paths({
+      cwd = cwd,
+      filter = function(path_data)
+        local path = vim.fn.fnamemodify(path_data.path, ':p')
+        return path ~= cur
+      end,
+    })
+  end, { desc = 'Find previously opened files (visits)' })
 
   vim.keymap.set('n', '<leader><space>', function() pick.buffers() end, { desc = 'Find buffers' })
 
@@ -214,6 +232,7 @@ return {
       setup_editing()
       setup_ui()
       setup_completion()
+      setup_visits()
       setup_pick()
       setup_keymap()
     end,
