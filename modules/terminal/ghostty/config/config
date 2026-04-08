@@ -18,4 +18,4 @@ link-previews                    = true
 clipboard-trim-trailing-spaces   = true
 
 # shader
-custom-shader                    = shaders/cursor_smear.glsl
+# custom-shader                    = shaders/cursor_smear.glsl
