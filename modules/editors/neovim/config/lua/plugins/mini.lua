@@ -82,7 +82,14 @@ local function setup_ui()
   })
 
   -- Indent scope line (no animation, dimmed color pulled from Comment fg)
-  require('mini.indentscope').setup()
+  require('mini.indentscope').setup({
+    mappings = {
+      object_scope = '',
+      object_scope_with_border = '',
+      goto_top = '',
+      goto_bottom = '',
+    },
+  })
   MiniIndentscope.config.draw.animation = MiniIndentscope.gen_animation.none()
 
   -- Start screen
