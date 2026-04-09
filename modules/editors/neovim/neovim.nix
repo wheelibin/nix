@@ -8,15 +8,20 @@
 
   home.packages = with pkgs-unstable; [
     pgformatter
-    nixfmt-rfc-style
+    nixfmt
     nixfmt-tree # for formatting whole directories
     chafa # for image previews in fzf-lua
+
+    # LSP servers
+    basedpyright
+    gopls
+    lua-language-server
+    terraform-ls
+    typescript-language-server
+    vscode-langservers-extracted # html, css, json, eslint
+    yaml-language-server
   ];
 
   home.file.".config/nvim".source = ./config;
-
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.local/share/nvim/mason/bin"
-  ];
 
 }
