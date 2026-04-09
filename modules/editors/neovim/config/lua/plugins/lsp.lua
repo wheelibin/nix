@@ -42,26 +42,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      { "mason-org/mason.nvim", opts = {} },
-      {
-        "mason-org/mason-lspconfig.nvim",
-        opts = {
-          ensure_installed = {
-            "basedpyright",
-            "gopls",
-            "html",
-            "jsonls",
-            "lua_ls",
-            "terraformls",
-            "vtsls",
-            "yamlls",
-          },
-          automatic_installation = true,
-        },
-      },
-      -- { "j-hui/fidget.nvim", opts = {} },
-    },
     config = function()
       vim.lsp.config("*", {
         flags = { debounce_text_changes = 150 },
@@ -73,5 +53,28 @@ return {
 
       vim.lsp.inlay_hint.enable(true)
     end,
+  },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      on_attach = on_attach,
+      settings = {
+        expose_as_code_action = "all",
+        complete_function_calls = true,
+        code_lens = "off",
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = false,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = false,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
   },
 }
