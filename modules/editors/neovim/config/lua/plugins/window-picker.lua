@@ -1,14 +1,14 @@
 return {
   {
-    's1n7ax/nvim-window-picker',
-    name = 'window-picker',
-    event = 'VeryLazy',
-    version = '2.*',
+    "s1n7ax/nvim-window-picker",
+    name = "window-picker",
+    event = "VeryLazy",
+    version = "2.*",
     config = function()
-      require 'window-picker'.setup({
+      require("window-picker").setup({
         hint = "floating-big-letter",
-        selection_chars = 'TNSERIAO',
+        selection_chars = "TNSERIAO",
       })
     end,
-  }
+  },
 }

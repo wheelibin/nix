@@ -1,69 +1,67 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     branch = "master",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-context",
         config = function()
-          require('treesitter-context').setup({
+          require("treesitter-context").setup({
             separator = "┈",
           })
-          vim.keymap.set('n', '<leader>c', require("treesitter-context").go_to_context)
+          vim.keymap.set("n", "<leader>c", require("treesitter-context").go_to_context)
           -- vim.cmd [[ hi! def link TreesitterContext LspInlayHint ]]
           -- vim.cmd [[ hi TreesitterContext gui=italic ]]
-        end
+        end,
       },
       {
         "andymass/vim-matchup",
-        init = function()
-          vim.g.matchup_text_obj_enabled = 0
-        end
+        init = function() vim.g.matchup_text_obj_enabled = 0 end,
       },
     },
-    build = ':TSUpdate',
+    build = ":TSUpdate",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup({
         -- A list of parser names, or "all"
         ensure_installed = {
-          'bash',
-          'c',
-          'comment',
-          'cpp',
-          'css',
-          'csv',
-          'dockerfile',
-          'git_config',
-          'git_rebase',
-          'gitattributes',
-          'gitcommit',
-          'gitignore',
-          'go',
-          'gomod',
-          'gosum',
-          'gotmpl',
-          'gowork',
-          'graphql',
-          'hcl',
-          'html',
-          'http',
-          'javascript',
-          'jsdoc',
-          'json',
-          'lua',
-          'make',
-          'markdown',
-          'markdown_inline',
-          'proto',
-          'python',
-          'regex',
-          'sql',
-          'toml',
-          'tsx',
-          'typescript',
-          'vim',
-          'xml',
-          'yaml'
+          "bash",
+          "c",
+          "comment",
+          "cpp",
+          "css",
+          "csv",
+          "dockerfile",
+          "git_config",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "gomod",
+          "gosum",
+          "gotmpl",
+          "gowork",
+          "graphql",
+          "hcl",
+          "html",
+          "http",
+          "javascript",
+          "jsdoc",
+          "json",
+          "lua",
+          "make",
+          "markdown",
+          "markdown_inline",
+          "proto",
+          "python",
+          "regex",
+          "sql",
+          "toml",
+          "tsx",
+          "typescript",
+          "vim",
+          "xml",
+          "yaml",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -85,22 +83,21 @@ return {
           -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
           -- Using this option may slow down your editor, and you may see some duplicate highlights.
           -- Instead of true it can also be a list of languages
-          additional_vim_regex_highlighting = false
+          additional_vim_regex_highlighting = false,
         },
 
         indent = { enable = true },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = '<TAB>',
-            node_incremental = '<TAB>',
+            init_selection = "<TAB>",
+            node_incremental = "<TAB>",
             -- scope_incremental = '<c-s>',
-            node_decremental = '<S-TAB>',
+            node_decremental = "<S-TAB>",
           },
         },
-
-      }
-    end
+      })
+    end,
   },
   {
     -- navigation using treesitter
@@ -108,12 +105,11 @@ return {
     lazy = true,
     event = "BufEnter",
     opts = {
-      highlight = true -- default is false
+      highlight = true, -- default is false
     },
     keys = {
-      { "<C-n>", ":Treewalker Down<CR>", mode = { 'n' } },
-      { "<C-e>", ":Treewalker Up<CR>",   mode = { 'n' } },
+      { "<C-n>", ":Treewalker Down<CR>", mode = { "n" } },
+      { "<C-e>", ":Treewalker Up<CR>", mode = { "n" } },
     },
-  }
-
+  },
 }

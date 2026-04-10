@@ -1,6 +1,6 @@
 return {
   {
-    'stevearc/aerial.nvim',
+    "stevearc/aerial.nvim",
     opts = {
       on_attach = function(bufnr)
         -- Jump forwards/backwards with '{' and '}'

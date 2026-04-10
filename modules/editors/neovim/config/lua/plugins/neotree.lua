@@ -5,14 +5,14 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "echasnovski/mini.icons",
-      "MunifTanjim/nui.nvim"
+      "MunifTanjim/nui.nvim",
     },
     keys = {
       {
         "<leader>n",
         "<cmd>Neotree source=filesystem reveal=true position=left toggle=true<cr>",
-        desc = 'Nvim-Tree Toggle'
-      }
+        desc = "Nvim-Tree Toggle",
+      },
     },
     opts = {
       -- source_selector = {
@@ -22,17 +22,17 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted   = "✖", -- this can only be used in the git_status source
-            renamed   = "", -- this can only be used in the git_status source
+            added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+            deleted = "✖", -- this can only be used in the git_status source
+            renamed = "", -- this can only be used in the git_status source
             -- Status type
             untracked = "?",
-            ignored   = "",
-            unstaged  = "u",
-            staged    = "s",
-            conflict  = "",
-          }
+            ignored = "",
+            unstaged = "u",
+            staged = "s",
+            conflict = "",
+          },
         },
         diagnostics = {
           symbols = {
@@ -52,23 +52,17 @@ return {
           provider = function(icon, node) -- setup a custom icon provider
             local text, hl
             local mini_icons = require("mini.icons")
-            if node.type == "file" then        -- if it's a file, set the text/hl
+            if node.type == "file" then -- if it's a file, set the text/hl
               text, hl = mini_icons.get("file", node.name)
             elseif node.type == "directory" then -- get directory icons
               text, hl = mini_icons.get("directory", node.name)
               -- only set the icon text if it is not expanded
-              if node:is_expanded() then
-                text = nil
-              end
+              if node:is_expanded() then text = nil end
             end
 
             -- set the icon text/highlight only if it exists
-            if text then
-              icon.text = text
-            end
-            if hl then
-              icon.highlight = hl
-            end
+            if text then icon.text = text end
+            if hl then icon.highlight = hl end
           end,
         },
         kind_icon = {
@@ -83,10 +77,10 @@ return {
         use_libuv_file_watcher = true,
         filtered_items = {
           hide_gitignored = false,
-        }
+        },
       },
       buffers = {
-        follow_current_file = { enabled = true }
+        follow_current_file = { enabled = true },
       },
       window = {
         mappings = {
@@ -105,8 +99,8 @@ return {
               print("Not a directory")
             end
           end,
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }

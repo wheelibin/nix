@@ -1,6 +1,6 @@
 return {
   {
-    'mfussenegger/nvim-lint',
+    "mfussenegger/nvim-lint",
     event = "BufRead",
     config = function()
       local lint = require("lint")
@@ -16,10 +16,8 @@ return {
       }
       local events = { "BufWritePost", "BufReadPost" }
       vim.api.nvim_create_autocmd(events, {
-        callback = function()
-          lint.try_lint()
-        end,
+        callback = function() lint.try_lint() end,
       })
-    end
-  }
+    end,
+  },
 }

@@ -1,4 +1,4 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Hide deprecation warnings
@@ -20,7 +20,7 @@ opt.number = true
 -- opt.relativenumber = true
 
 -- sync clipboard between nvim and OS
-opt.clipboard = 'unnamedplus'
+opt.clipboard = "unnamedplus"
 
 -- search flags
 opt.ignorecase = true
@@ -37,23 +37,23 @@ opt.updatetime = 200
 opt.timeoutlen = 500
 
 -- show sign column
-opt.signcolumn = 'yes'
+opt.signcolumn = "yes"
 
 -- Set completeopt to have a better completion experience
-opt.completeopt = { 'menu', 'menuone', 'noselect' }
+opt.completeopt = { "menu", "menuone", "noselect" }
 
 -- needed for colorizer
 opt.termguicolors = true
 
 -- enable the mouse in (a)ll modes
-opt.mouse = 'a'
+opt.mouse = "a"
 -- disable context menu
 vim.cmd([[
   aunmenu PopUp
   autocmd! nvim.popupmenu
 ]])
 -- disable middle click paste
-vim.keymap.set({ 'n', 'v', 'i' }, '<MiddleMouse>', '<Nop>')
+vim.keymap.set({ "n", "v", "i" }, "<MiddleMouse>", "<Nop>")
 
 -- scroll offset
 opt.scrolloff = 8
@@ -64,7 +64,7 @@ opt.cursorline = true
 opt.swapfile = false
 
 -- cursor not allowed in whitespace
-opt.virtualedit = 'none'
+opt.virtualedit = "none"
 
 -- hide the tildes showing end of buffer
 opt.fcs = "eob: "
@@ -75,7 +75,7 @@ opt.foldlevel = 99
 
 opt.conceallevel = 0
 
-opt.winborder = 'rounded'
+opt.winborder = "rounded"
 
 -- sane split options
 opt.splitbelow = true

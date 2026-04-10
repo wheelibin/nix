@@ -7,9 +7,6 @@
   };
 
   home.packages = with pkgs-unstable; [
-    pgformatter
-    nixfmt
-    nixfmt-tree # for formatting whole directories
     chafa # for image previews in fzf-lua
 
     # LSP servers
@@ -20,6 +17,12 @@
     typescript-language-server
     vscode-langservers-extracted # html, css, json, eslint
     yaml-language-server
+
+    # formatters
+    stylua
+    pgformatter
+    nixfmt
+    nixfmt-tree # for formatting whole directories
   ];
 
   home.file.".config/nvim".source = ./config;

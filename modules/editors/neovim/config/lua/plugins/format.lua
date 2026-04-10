@@ -7,9 +7,7 @@ return {
       {
         -- Customize or remove this keymap to your liking
         "<leader>f",
-        function()
-          require("conform").format({ lsp_format = 'fallback' })
-        end,
+        function() require("conform").format({ lsp_format = "fallback" }) end,
         mode = "",
         desc = "Format buffer",
       },
@@ -34,9 +32,7 @@ return {
         format_on_save = function(bufnr)
           -- Disable autoformat on certain filetypes
           local ignore_filetypes = { "sql" }
-          if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
-            return
-          end
+          if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then return end
           -- ...additional logic...
           return { timeout_ms = 5000, lsp_format = "fallback" }
         end,

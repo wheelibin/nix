@@ -10,9 +10,7 @@ local function read_bytes(n)
 end
 
 local function to_hex(str)
-  return (str:gsub('.', function(c)
-    return string.format('%02x', string.byte(c))
-  end))
+  return (str:gsub(".", function(c) return string.format("%02x", string.byte(c)) end))
 end
 
 local function encode_uint32_be(n)
