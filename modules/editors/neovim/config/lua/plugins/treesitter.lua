@@ -90,10 +90,10 @@ return {
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<TAB>",
-            node_incremental = "<TAB>",
+            init_selection = "<S-TAB>",
+            node_incremental = "<S-TAB>",
             -- scope_incremental = '<c-s>',
-            node_decremental = "<S-TAB>",
+            node_decremental = "<C-S-TAB>",
           },
         },
       })
