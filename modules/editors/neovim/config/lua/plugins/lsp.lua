@@ -52,6 +52,16 @@ return {
         on_attach = on_attach,
       })
 
+      vim.lsp.enable({
+        "basedpyright",
+        "gopls",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "terraformls",
+        "yamlls",
+      })
+
       setup_diagnostics()
       setup_keymaps()
 
@@ -69,9 +79,9 @@ return {
         complete_function_calls = true,
         code_lens = "off",
         tsserver_file_preferences = {
-          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHints = "none",
           includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
+          includeInlayFunctionParameterTypeHints = false,
           includeInlayVariableTypeHints = false,
           includeInlayVariableTypeHintsWhenTypeMatchesName = false,
           includeInlayPropertyDeclarationTypeHints = true,

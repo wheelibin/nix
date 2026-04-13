@@ -167,9 +167,7 @@ local function setup_visits() require("mini.visits").setup() end
 
 --- Parse a "path│lnum│col│ text" line produced by mini.extra's LSP picker.
 --- Returns (path, lnum, text) with the col segment stripped, or nil on mismatch.
-local function pick_parse_lsp_location(text)
-  return text:match("^(.-)│(%d+)│%d+│(.*)$")
-end
+local function pick_parse_lsp_location(text) return text:match("^(.-)│(%d+)│%d+│(.*)$") end
 
 --- Measure maximum path/lnum widths across all items in the active picker.
 --- Returns a format string like "%-30s │%3s│%s", or nil if no items matched.
@@ -215,12 +213,6 @@ local function setup_pick()
 
       -- Whether to cache matches (more speed and memory on repeated prompts)
       use_cache = true,
-    },
-    mappings = {
-      scroll_down = "<C-n>",
-      scroll_left = "<C-m>",
-      scroll_right = "<C-i>",
-      scroll_up = "<C-e>",
     },
     window = {
       config = function()
