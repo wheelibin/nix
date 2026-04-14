@@ -145,7 +145,89 @@ local function setup_completion()
     callback = function() MiniSnippets.session.stop() end,
   })
 
-  require("mini.completion").setup()
+  -- Boost kinds that are most often "the right answer" and demote noise.
+  -- Missing kinds default to priority 100; only relative order matters.
+  -- Negative priority filters the kind out entirely.
+  local kind_priority = {
+    Field = 210,
+    Property = 210,
+    Variable = 200,
+    Method = 200,
+    Function = 190,
+    EnumMember = 180,
+    Constant = 180,
+    Class = 170,
+    Interface = 170,
+    Struct = 170,
+    Module = 160,
+    Enum = 160,
+    TypeParameter = 150,
+    -- Default (100) for: Value, Unit, Color, File, Folder, Reference, Event, Operator
+    Keyword = 80,
+    Snippet = 70,
+    Text = 60,
+  }
+
+  --- Build a word→min-distance map by scanning visible buffer lines around
+  --- the cursor.  Only scans a window (±proximity_lines) to keep it fast.
+  local function build_proximity_map(proximity_lines)
+    local cursor_row = vim.api.nvim_win_get_cursor(0)[1] -- 1-indexed
+    local buf = vim.api.nvim_get_current_buf()
+    local total = vim.api.nvim_buf_line_count(buf)
+    local lo = math.max(0, cursor_row - 1 - proximity_lines)
+    local hi = math.min(total, cursor_row + proximity_lines)
+    local lines = vim.api.nvim_buf_get_lines(buf, lo, hi, false)
+
+    local map = {} ---@type table<string, number>
+    for i, line in ipairs(lines) do
+      local line_nr = lo + i -- 1-indexed
+      local dist = math.abs(line_nr - cursor_row)
+      for word in line:gmatch("[%w_]+") do
+        local prev = map[word]
+        if prev == nil or dist < prev then map[word] = dist end
+      end
+    end
+    return map
+  end
+
+  local process_items = function(items, base)
+    -- First pass: fuzzy filter + kind arrangement via mini.completion defaults
+    local result =
+      MiniCompletion.default_process_items(items, base, { kind_priority = kind_priority })
+
+    -- Second pass: proximity boost.  Items whose label appears near the
+    -- cursor get a bonus that acts as a tiebreaker within the same kind tier.
+    -- We scan ±200 lines (fast enough for an interactive popup).
+    local prox = build_proximity_map(200)
+    local kind_map = vim.lsp.protocol.CompletionItemKind
+    local scored = {}
+    for i, item in ipairs(result) do
+      local kind_name = kind_map[item.kind]
+      local kp = (kind_name and kind_priority[kind_name]) or 100
+
+      -- Proximity bonus: 0-100 range, highest when distance=0, decays with distance.
+      -- Using label for the lookup since that's what the user sees / types.
+      local word = item.filterText or item.label
+      local dist = prox[word]
+      local proximity_bonus = dist and math.max(0, 100 - dist) or 0
+
+      -- Combined score: kind is the major bucket, proximity is the tiebreaker.
+      scored[#scored + 1] = { score = kp * 1000 + proximity_bonus, idx = i, item = item }
+    end
+
+    table.sort(scored, function(a, b)
+      if a.score ~= b.score then return a.score > b.score end
+      return a.idx < b.idx -- preserve original order as final tiebreaker
+    end)
+
+    local out = {}
+    for _, entry in ipairs(scored) do out[#out + 1] = entry.item end
+    return out
+  end
+
+  require("mini.completion").setup({
+    lsp_completion = { process_items = process_items },
+  })
   vim.opt.completeopt = { "menuone", "noinsert", "fuzzy" }
 
   -- Disable completion in picker prompt buffers (mini.pick, fff, etc.) where
