@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+current_session=$(tmux display-message -p '#S')
+
 # sorted by last attached
-selected=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' -f '#{?session_attached,0,1}' | \
+selected=$(tmux list-sessions -F '#{session_last_attached} #{session_name}' -f "#{!=:#{session_name},$current_session}" | \
   sort -nr | \
   cut -d' ' -f2- | \
   fzf --reverse \
