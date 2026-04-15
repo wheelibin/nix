@@ -290,8 +290,8 @@ end
 local function setup_pick()
   require("mini.pick").setup({
     options = {
-      -- Whether to show content from bottom to top
-      content_from_bottom = true,
+      -- -- Whether to show content from bottom to top
+      -- content_from_bottom = true,
 
       -- Whether to cache matches (more speed and memory on repeated prompts)
       use_cache = true,
