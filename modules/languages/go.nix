@@ -1,8 +1,16 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  config,
+  ...
+}:
 
 {
 
-  programs.go.enable = true;
+  programs.go = {
+    enable = true;
+    package = pkgs-unstable.go;
+  };
 
   home.packages = with pkgs; [
     delve
