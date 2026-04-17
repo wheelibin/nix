@@ -15,7 +15,7 @@
       provider.amazon-bedrock = {
         options = {
           region = "us-east-1";
-          profile = "bedrock";
+          endpoint = "{env:OPENCODE_BEDROCK_ENDPOINT}";
         };
       };
       mcp.fff = {
@@ -31,4 +31,10 @@
     "${config.home.homeDirectory}/.local/bin"
   ];
 
+  programs.zsh = {
+    enable = true;
+    initContent = ''
+      [ -f "$HOME/.env.opencode" ] && source "$HOME/.env.opencode"
+    '';
+  };
 }
