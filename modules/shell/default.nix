@@ -9,6 +9,7 @@
     ./fzf.nix
     ./jq.nix
     ./lazydocker.nix
+    ./qrypad.nix
     ./ripgrep.nix
     ./starship/starship.nix
     ./tmux/tmux.nix
