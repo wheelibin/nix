@@ -1,18 +1,26 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  config,
+  ...
+}:
 
 {
 
-  programs.go.enable = true;
+  programs.go = {
+    enable = true;
+    package = pkgs-unstable.go;
+  };
 
-  home.packages = with pkgs; [
-    delve
-    gci
-    gofumpt
-    gotools
-    golangci-lint
-    golines
-    go-task
-  ];
+  home.packages =
+    (with pkgs-unstable; [
+      delve
+      gofumpt
+      golangci-lint
+      golines
+      go-task
+    ])
+    ++ [ pkgs.gci ];
 
   home.sessionVariables = {
     GOPATH = "${config.home.homeDirectory}/go";
