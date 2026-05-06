@@ -8,6 +8,7 @@
     ../../modules/desktop/karabiner-elements.nix
     ../../modules/ai/opencode.nix
     ../../modules/cloud/aws.nix
+    ../../modules/git/gitlogue.nix
   ];
 
   programs.zsh.shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#mac_work";

@@ -9,6 +9,8 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    gitlogue.url = "github:unhappychoice/gitlogue";
   };
 
   outputs =
@@ -16,6 +18,7 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
+      gitlogue,
       ...
     }:
     let
@@ -39,13 +42,19 @@
       homeConfigurations = {
         mac_home = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit system pkgs-unstable; };
+          extraSpecialArgs = {
+            inherit system pkgs-unstable;
+            gitlogue-pkg = gitlogue.packages.${system}.default;
+          };
           modules = [ ./profiles/mac_home ];
         };
 
         mac_work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit system pkgs-unstable; };
+          extraSpecialArgs = {
+            inherit system pkgs-unstable;
+            gitlogue-pkg = gitlogue.packages.${system}.default;
+          };
           modules = [ ./profiles/mac_work ];
         };
       };
