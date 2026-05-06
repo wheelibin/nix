@@ -9,6 +9,7 @@ in
     nodejs_24
     eslint_d
     prettier
+    pnpm
   ];
 
   # Create dirs during activation (no lib.dag dependency)
