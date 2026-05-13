@@ -169,7 +169,12 @@ cpuType: ""
 #       touch ~/.provision
 #
 # Default: []
-provision: []
+provision:
+  - mode: system
+    script: |
+      # prevent error "failed to create fsnotify watcher: too many open files" on large clusters
+      sysctl -w fs.inotify.max_user_watches=524288
+      sysctl -w fs.inotify.max_user_instances=512
 
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
 # SSH config will still be generated in $COLIMA_HOME/ssh_config regardless.
