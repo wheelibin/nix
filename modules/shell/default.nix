@@ -5,6 +5,7 @@
     ./atuin.nix
     ./btop.nix
     ./eza.nix
+    ./fastfetch.nix
     ./fd.nix
     ./fzf.nix
     ./jq.nix
