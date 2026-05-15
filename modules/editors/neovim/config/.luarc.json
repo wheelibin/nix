@@ -4,6 +4,8 @@
         "MiniIcons",
         "MiniSnippets",
         "MiniIndentscope",
-        "MiniPick"
+        "MiniPick",
+        "MiniCompletion",
+        "MiniVisits"
     ]
 }

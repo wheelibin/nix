@@ -192,8 +192,7 @@ local function setup_completion()
 
   local process_items = function(items, base)
     -- First pass: fuzzy filter + kind arrangement via mini.completion defaults
-    local result =
-      MiniCompletion.default_process_items(items, base, { kind_priority = kind_priority })
+    local result = MiniCompletion.default_process_items(items, base, { kind_priority = kind_priority })
 
     -- Second pass: proximity boost.  Items whose label appears near the
     -- cursor get a bonus that acts as a tiebreaker within the same kind tier.
@@ -221,7 +220,9 @@ local function setup_completion()
     end)
 
     local out = {}
-    for _, entry in ipairs(scored) do out[#out + 1] = entry.item end
+    for _, entry in ipairs(scored) do
+      out[#out + 1] = entry.item
+    end
     return out
   end
 
