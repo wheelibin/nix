@@ -1,0 +1,34 @@
+return {
+  {
+    "milanglacier/minuet-ai.nvim",
+    config = function()
+      require("minuet").setup({
+        provider = "openai_compatible",
+        virtualtext = {
+          auto_trigger_ft = { "*" },
+          auto_trigger_ignore_ft = { "fff_input", "fff_list", "fff_file_info", "fff_preview" },
+          keymap = {
+            accept = "<A-A>",
+            accept_line = "<A-a>",
+            accept_n_lines = "<A-z>",
+            prev = "<A-[>",
+            next = "<A-]>",
+            dismiss = "<A-e>",
+          },
+        },
+        provider_options = {
+          openai_compatible = {
+            model = "google/gemini-2.0-flash-lite",
+            end_point = os.getenv("AI_GATEWAY_URL") .. "/vertex-ai-openai/v1/chat/completions",
+            api_key = "AI_GATEWAY_API_KEY",
+            name = "Gemini",
+            stream = true,
+            optional = {
+              max_tokens = 256,
+            },
+          },
+        },
+      })
+    end,
+  },
+}
