@@ -15,7 +15,7 @@
       provider.amazon-bedrock = {
         options = {
           region = "us-east-1";
-          endpoint = "{env:OPENCODE_BEDROCK_ENDPOINT}";
+          endpoint = "{env:AI_GATEWAY_URL}/bedrock";
         };
       };
       mcp.fff = {
@@ -34,7 +34,7 @@
   programs.zsh = {
     enable = true;
     initContent = ''
-      [ -f "$HOME/.env.opencode" ] && source "$HOME/.env.opencode"
+      [ -f "$HOME/.env.ai" ] && source "$HOME/.env.ai"
     '';
   };
 }
