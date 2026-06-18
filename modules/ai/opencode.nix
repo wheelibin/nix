@@ -11,7 +11,7 @@
     package = pkgs-unstable.opencode;
     settings = {
       theme = "kanagawa";
-      plugin = [ "superpowers@git+https://github.com/obra/superpowers.git#v5.0.7" ];
+      plugin = [ "superpowers@git+https://github.com/obra/superpowers.git#v6.0.2" ];
       provider.amazon-bedrock = {
         options = {
           region = "us-east-1";
