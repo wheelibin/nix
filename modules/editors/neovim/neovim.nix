@@ -73,6 +73,7 @@
     pgformatter
     nixfmt
     nixfmt-tree # for formatting whole directories
+    shfmt
   ];
 
   home.file.".config/nvim".source = ./config;

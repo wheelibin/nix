@@ -27,6 +27,8 @@ return {
           markdown = { "prettier" },
           sql = { "pg_format" },
           nix = { "nixfmt" },
+          sh = { "shfmt" },
+          bash = { "shfmt" },
         },
         -- Set up format-on-save
         format_on_save = function(bufnr)

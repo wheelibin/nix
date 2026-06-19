@@ -19,6 +19,7 @@
       golangci-lint
       golines
       go-task
+      gotools # provides goimports (used by conform)
     ])
     ++ [ pkgs.gci ];
 
