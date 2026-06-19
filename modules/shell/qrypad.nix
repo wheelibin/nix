@@ -3,11 +3,11 @@
 let
   qrypad = pkgs.stdenvNoCC.mkDerivation {
     pname = "qrypad";
-    version = "1.8.2";
+    version = "1.8.3";
 
     src = pkgs.fetchurl {
-      url = "https://github.com/wheelibin/qrypad/releases/download/v1.8.2/qrypad_1.8.2_darwin_arm64.tar.gz";
-      hash = "sha256-rHvo1hiilSXedO0udt0Ua2tYbEtovJjtq3EvT+NlzFQ=";
+      url = "https://github.com/wheelibin/qrypad/releases/download/v1.8.3/qrypad_1.8.3_darwin_arm64.tar.gz";
+      hash = "sha256-6+IX7bAGfScRXrlGwSCY0870krZ7J6aJQVU+MbWAD2U=";
     };
 
     sourceRoot = ".";
