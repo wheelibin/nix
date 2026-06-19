@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../../modules/ai/opencode.nix
     ../../modules/desktop/fonts.nix
     ../../modules/docker
     ../../modules/editors/neovim/neovim.nix

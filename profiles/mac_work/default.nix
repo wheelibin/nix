@@ -6,7 +6,6 @@
     ./packages.nix
     ../../modules/desktop/bruno.nix
     ../../modules/desktop/karabiner-elements.nix
-    ../../modules/ai/opencode.nix
     ../../modules/cloud/aws.nix
     ../../modules/git/gitlogue.nix
   ];
