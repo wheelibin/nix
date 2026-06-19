@@ -17,5 +17,14 @@ require("lazy").setup("plugins", {
   lockfile = vim.fn.stdpath("data") .. "/lazy-lock.json",
 })
 
+-- Ensure nix-installed packages (e.g. the treesitter grammars Home Manager
+-- writes to `stdpath('data')/site/pack/hm`) are on the packpath, then load
+-- them. This must run AFTER `lazy.setup()` because lazy.nvim resets packpath
+-- during setup. On macOS the default packpath also omits
+-- `~/.local/share/nvim/site`, so without this the parsers exist on disk but
+-- are never discovered by `vim.treesitter`.
+vim.opt.packpath:prepend(vim.fn.stdpath("data") .. "/site")
+vim.cmd("packloadall")
+
 require("keys")
 require("autocommands")
