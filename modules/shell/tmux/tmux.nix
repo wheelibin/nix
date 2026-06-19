@@ -16,14 +16,14 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       {
-        plugin = kanagawa;
+        plugin = ukiyo;
         extraConfig = ''
-          set -g @kanagawa-ignore-window-colors true
-          set -g @kanagawa-theme 'dragon'
-          set -g @kanagawa-show-battery false
-          set -g @kanagawa-show-powerline true
-          set -g @kanagawa-refresh-rate 10
-          set -g @kanagawa-plugins "time git"
+          set -g @ukiyo-ignore-window-colors true
+          set -g @ukiyo-theme 'dragon'
+          set -g @ukiyo-show-battery false
+          set -g @ukiyo-show-powerline true
+          set -g @ukiyo-refresh-rate 10
+          set -g @ukiyo-plugins "time git"
         '';
       }
     ];

@@ -9,8 +9,10 @@
   programs.opencode = {
     enable = true;
     package = pkgs-unstable.opencode;
-    settings = {
+    tui = {
       theme = "kanagawa";
+    };
+    settings = {
       plugin = [ "superpowers@git+https://github.com/obra/superpowers.git#v6.0.2" ];
       provider.amazon-bedrock = {
         options = {

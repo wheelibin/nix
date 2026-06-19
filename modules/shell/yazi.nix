@@ -11,6 +11,7 @@ in
 {
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
     flavors = {
       # name becomes ~/.config/yazi/flavors/kanagawa.yazi
       kanagawa = kanagawaFlavor;
