@@ -70,12 +70,16 @@ opt.virtualedit = "none"
 opt.fcs = "eob: "
 
 opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 
 opt.conceallevel = 0
 
 opt.winborder = "rounded"
+
+-- border + max width for the completion popup menu (Neovim 0.12+)
+opt.pumborder = "rounded"
+opt.pummaxwidth = 60
 
 -- sane split options
 opt.splitbelow = true

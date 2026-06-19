@@ -87,15 +87,6 @@ return {
         },
 
         indent = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<S-TAB>",
-            node_incremental = "<S-TAB>",
-            -- scope_incremental = '<c-s>',
-            node_decremental = "<C-S-TAB>",
-          },
-        },
       })
     end,
   },

@@ -5,23 +5,22 @@ local function on_attach(client, bufnr)
 
   map("gD", vim.lsp.buf.declaration, "Goto declaration (LSP)")
   map("gd", vim.lsp.buf.definition, "Goto definition (LSP)")
+  map("<leader>D", vim.lsp.buf.type_definition, "Goto type definition (LSP)")
   map("<C-Space>", vim.lsp.buf.hover, "Hover info (LSP)")
   map("<leader>rn", vim.lsp.buf.rename, "Rename (LSP)")
 end
 
 local function setup_diagnostics()
-  local signs = {
-    { name = "DiagnosticSignError", text = "✘" },
-    { name = "DiagnosticSignWarn", text = "▲" },
-    { name = "DiagnosticSignHint", text = "⚑" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
-
   vim.diagnostic.config({
     severity_sort = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "✘",
+        [vim.diagnostic.severity.WARN] = "▲",
+        [vim.diagnostic.severity.HINT] = "⚑",
+        [vim.diagnostic.severity.INFO] = "",
+      },
+    },
     float = { border = "rounded", source = "if_many", header = "", prefix = "" },
   })
 end

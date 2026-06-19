@@ -229,7 +229,7 @@ local function setup_completion()
   require("mini.completion").setup({
     lsp_completion = { process_items = process_items },
   })
-  vim.opt.completeopt = { "menuone", "noinsert", "fuzzy" }
+  vim.opt.completeopt = { "menuone", "noinsert", "fuzzy", "nearest" }
 
   -- Disable completion in picker prompt buffers (mini.pick, fff, etc.) where
   -- the built-in popup would interfere with the picker UI
