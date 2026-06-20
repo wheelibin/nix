@@ -8,6 +8,7 @@ in
   home.packages = with pkgs; [
     nodejs_24
     eslint_d
+    typescript
     prettier
     pnpm
   ];
