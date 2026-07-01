@@ -19,6 +19,7 @@
       golangci-lint
       golines
       go-task
+      gotestsum # test runner for neotest-golang
       gotools # provides goimports (used by conform)
     ])
     ++ [ pkgs.gci ];
