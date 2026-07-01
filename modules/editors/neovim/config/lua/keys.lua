@@ -21,8 +21,6 @@ vim.keymap.set("n", "<C-down>", ":m .+1<CR>==", { desc = "Move line up" })
 vim.keymap.set("i", "<C-down>", "<Esc>:m .+1<CR>==gi", { desc = "Move line up" })
 vim.keymap.set("v", "<C-down>", ":m '>+1<CR>gv=gv", { desc = "Move line up" })
 
-vim.keymap.set("n", "<leader>tn", ":tabnext<CR>", { desc = "Tab next" })
-
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("n", ":", ";")
 
