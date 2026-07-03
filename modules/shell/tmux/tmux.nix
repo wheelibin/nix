@@ -6,7 +6,7 @@
 
   programs.tmux = {
     enable = true;
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     baseIndex = 1;
     mouse = true;
     clock24 = true;
