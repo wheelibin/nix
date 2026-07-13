@@ -16,19 +16,21 @@ return {
       require("conform").setup({
         -- Define your formatters
         formatters_by_ft = {
-          lua = { "stylua" },
-          python = { "isort", "black" },
-          javascript = { "prettier", stop_after_first = true },
-          typescript = { "prettier", stop_after_first = true },
-          typescriptreact = { "prettier", stop_after_first = true },
-          css = { "prettier", stop_after_first = true },
-          html = { "prettier", stop_after_first = true },
-          go = { "goimports", "gofumpt", "golines" },
-          markdown = { "prettier" },
-          sql = { "pg_format" },
-          nix = { "nixfmt" },
-          sh = { "shfmt" },
           bash = { "shfmt" },
+          css = { "prettier" },
+          go = { "goimports", "gofumpt", "golines" },
+          html = { "prettier" },
+          javascript = { "prettier" },
+          json = { "prettier" },
+          jsonc = { "prettier" },
+          lua = { "stylua" },
+          markdown = { "prettier" },
+          nix = { "nixfmt" },
+          python = { "isort", "black" },
+          sh = { "shfmt" },
+          sql = { "pg_format" },
+          typescript = { "prettier" },
+          typescriptreact = { "prettier" },
         },
         -- Set up format-on-save
         format_on_save = function(bufnr)
