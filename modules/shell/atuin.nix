@@ -21,8 +21,6 @@
       # Make search feel like "super ctrl-r"
       filter_mode = "host"; # or "global" / "session" / "directory"
       search_mode = "fuzzy"; # or "prefix" / "exact"
-      keymap_mode = "vim-normal"; # or "emacs" / "vim-insert" / "auto"
-      # You can tweak these later with `atuin config set ...`
     };
   };
 
