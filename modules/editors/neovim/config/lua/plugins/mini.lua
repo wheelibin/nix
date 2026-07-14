@@ -27,6 +27,17 @@ local function setup_git()
     vim.api.nvim_win_set_cursor(0, { vim.fn.line(".", win_src), 0 })
     -- Bind both windows so they scroll together
     vim.wo[win_src].scrollbind, vim.wo.scrollbind = true, true
+    -- Clear scrollbind on the source window when the blame window is closed
+    local win_blame = vim.api.nvim_get_current_win()
+    vim.api.nvim_create_autocmd("WinClosed", {
+      pattern = tostring(win_blame),
+      once = true,
+      callback = function()
+        if vim.api.nvim_win_is_valid(win_src) then
+          vim.wo[win_src].scrollbind = false
+        end
+      end,
+    })
   end
   vim.api.nvim_create_autocmd("User", { pattern = "MiniGitCommandSplit", callback = align_blame })
 
