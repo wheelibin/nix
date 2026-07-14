@@ -67,6 +67,7 @@
     typescript-language-server
     vscode-langservers-extracted # html, css, json, eslint
     yaml-language-server
+    clang-tools # provides clangd
 
     # formatters
     stylua

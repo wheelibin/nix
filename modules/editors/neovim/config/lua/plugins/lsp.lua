@@ -1,13 +1,19 @@
+-- Runs for every LSP client that attaches to a buffer, regardless of whether
+-- it was configured via `vim.lsp.config` or a plugin like typescript-tools.
 local function on_attach(client, bufnr)
-  vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-
   local map = function(keys, func, desc) vim.keymap.set("n", keys, func, { desc = desc, buffer = bufnr }) end
 
+  -- Neovim 0.11+ already provides these buffer-local defaults on LspAttach:
+  --   grn -> rename          gra -> code action
+  --   grr -> references      gri -> implementation
+  --   grt -> type definition K   -> hover (but we've remapped K for Colemak,
+  --                                 so keep an explicit hover map below)
+  -- We only add mappings that fill gaps left by the defaults.
   map("gD", vim.lsp.buf.declaration, "Goto declaration (LSP)")
   map("gd", vim.lsp.buf.definition, "Goto definition (LSP)")
-  map("<leader>D", vim.lsp.buf.type_definition, "Goto type definition (LSP)")
-  map("<C-Space>", vim.lsp.buf.hover, "Hover info (LSP)")
-  map("<leader>rn", vim.lsp.buf.rename, "Rename (LSP)")
+  map("<C-Space>", function() vim.lsp.buf.hover() end, "Hover info (LSP)")
+
+  if client:supports_method("textDocument/inlayHint") then vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end
 end
 
 local function setup_diagnostics()
@@ -46,13 +52,17 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      vim.lsp.config("*", {
-        flags = { debounce_text_changes = 150 },
-        on_attach = on_attach,
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("user_lsp_attach", { clear = true }),
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client then on_attach(client, args.buf) end
+        end,
       })
 
       vim.lsp.enable({
         "basedpyright",
+        "clangd",
         "gopls",
         "html",
         "jsonls",
@@ -63,8 +73,6 @@ return {
 
       setup_diagnostics()
       setup_keymaps()
-
-      vim.lsp.inlay_hint.enable(true)
     end,
   },
   {
@@ -72,7 +80,6 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      on_attach = on_attach,
       settings = {
         expose_as_code_action = "all",
         complete_function_calls = true,
