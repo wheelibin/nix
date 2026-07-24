@@ -80,4 +80,15 @@ vim.keymap.set("", "K", "Nzzzv", {})
 
 -- move to end of next word
 vim.keymap.set("", "l", "e", {})
+
+-- Neovim 0.12 added default treesitter text objects `in` (inner node) and
+-- `an` (outer node) in visual/operator-pending mode. Since `i` is remapped
+-- to `l` (move right) and `n` to `j` (move down), these two-key sequences
+-- create ambiguity: pressing `i` causes Neovim to wait for a second key to
+-- disambiguate `in` vs the single-key `i→l` remap, resulting in the cursor
+-- jumping one extra character. Unmap them to remove the ambiguity.
+vim.keymap.del("x", "in")
+vim.keymap.del("o", "in")
+vim.keymap.del("x", "an")
+vim.keymap.del("o", "an")
 --------------------------
