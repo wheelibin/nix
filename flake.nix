@@ -10,7 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    gitlogue.url = "github:unhappychoice/gitlogue";
     qrypad.url = "github:wheelibin/qrypad";
   };
 
@@ -19,7 +18,6 @@
       nixpkgs,
       nixpkgs-unstable,
       home-manager,
-      gitlogue,
       qrypad,
       ...
     }:
@@ -46,7 +44,6 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit system pkgs-unstable;
-            gitlogue-pkg = gitlogue.packages.${system}.default;
             qrypad-pkg = qrypad.packages.${system}.default;
           };
           modules = [ ./profiles/mac_home ];
@@ -56,7 +53,6 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit system pkgs-unstable;
-            gitlogue-pkg = gitlogue.packages.${system}.default;
             qrypad-pkg = qrypad.packages.${system}.default;
           };
           modules = [ ./profiles/mac_work ];
