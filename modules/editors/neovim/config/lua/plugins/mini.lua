@@ -33,9 +33,7 @@ local function setup_git()
       pattern = tostring(win_blame),
       once = true,
       callback = function()
-        if vim.api.nvim_win_is_valid(win_src) then
-          vim.wo[win_src].scrollbind = false
-        end
+        if vim.api.nvim_win_is_valid(win_src) then vim.wo[win_src].scrollbind = false end
       end,
     })
   end
@@ -67,7 +65,7 @@ end
 local function setup_editing()
   require("mini.comment").setup()
   require("mini.align").setup()
-  require("mini.surround").setup()
+  -- require("mini.surround").setup()
   require("mini.pairs").setup()
 
   require("mini.bufremove").setup()
