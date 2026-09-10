@@ -21,5 +21,8 @@
   home.packages = with pkgs; [
     gnupg
     qmk
+    ffmpeg
+    vhs
+    ttyd # for vhs
   ];
 }
