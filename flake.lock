@@ -93,11 +93,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1789038067,
-        "narHash": "sha256-ZlXU9skvlXseQcXp4hGUkMTN2dlkwd5q3n1F6IfFJHg=",
+        "lastModified": 1790241958,
+        "narHash": "sha256-H/ZTvC0rRrhs6nCyUmVuE5OCbrPCyE2OjxJ/9WmjUMs=",
         "owner": "wheelibin",
         "repo": "qrypad",
-        "rev": "5c035db73b1c683b1fb0252fc38880556b230a79",
+        "rev": "692bfa4a2a827a8591c336b8a5e54bdb82fd4c19",
         "type": "github"
       },
       "original": {
