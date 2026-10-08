@@ -1,5 +1,7 @@
 # appearance
-theme                            = Kanagawa Dragon
+# theme                            = Kanagawa Dragon
+theme                            = Melange Dark
+
 font-family                      = JetBrainsMonoNL NFM ExtraLight
 font-size                        = 24              
 adjust-cell-height               = -8%

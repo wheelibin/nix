@@ -1,12 +1,12 @@
 return {
-  -- {
-  --   "savq/melange-nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     -- vim.cmd.colorscheme("melange")
-  --   end
-  -- },
+  {
+    "savq/melange-nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme("melange")
+    end
+  },
   -- {
   --   "mcauley-penney/techbase.nvim",
   --   opts = {
@@ -52,27 +52,27 @@ return {
   --     -- vim.cmd("colorscheme vague")
   --   end
   -- },
-  {
-    "rebelot/kanagawa.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("kanagawa").setup({
-        -- theme = "dragon",
-        transparent = true,
-        colors = {
-          theme = {
-            all = {
-              ui = {
-                bg_gutter = "none",
-              },
-            },
-          },
-        },
-      })
-      vim.cmd.colorscheme("kanagawa")
-    end,
-  },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("kanagawa").setup({
+  --       -- theme = "dragon",
+  --       transparent = true,
+  --       colors = {
+  --         theme = {
+  --           all = {
+  --             ui = {
+  --               bg_gutter = "none",
+  --             },
+  --           },
+  --         },
+  --       },
+  --     })
+  --     vim.cmd.colorscheme("kanagawa")
+  --   end,
+  -- },
   -- {
   --   "EdenEast/nightfox.nvim",
   --   name = "theme: nightfox",
