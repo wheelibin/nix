@@ -9,11 +9,15 @@
   programs.opencode = {
     enable = true;
     package = pkgs-unstable.opencode;
-    tui = {
-      theme = "kanagawa";
-    };
+    # tui = {
+    #   theme = "kanagawa";
+    # };
     settings = {
-      plugin = [ "superpowers@git+https://github.com/obra/superpowers.git#v6.0.2" ];
+      plugin = [
+        # "superpowers@git+https://github.com/obra/superpowers.git#v6.0.2",
+        "@dietrichgebert/ponytail"
+        "@mattpocock/skills"
+      ];
       provider.amazon-bedrock = {
         options = {
           region = "us-east-1";
