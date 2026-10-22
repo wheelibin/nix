@@ -63,9 +63,7 @@ end
 -- ── Editing helpers ───────────────────────────────────────────────────────────
 
 local function setup_editing()
-  require("mini.comment").setup()
   require("mini.align").setup()
-  -- require("mini.surround").setup()
   require("mini.pairs").setup()
 
   require("mini.bufremove").setup()
@@ -406,7 +404,7 @@ end
 
 return {
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
       setup_icons()

@@ -29,9 +29,9 @@ return {
     },
   },
 
-  before_init = function(init_params, _config)
-    local root = init_params.rootPath
-    if not root or root == vim.NIL then
+  before_init = function(init_params, config)
+    local root = config.root_dir
+    if not root then
       return
     end
     local venv_python = root .. "/.venv/bin/python"

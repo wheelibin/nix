@@ -16,6 +16,7 @@ return {
       }
       local events = { "BufWritePost", "BufReadPost" }
       vim.api.nvim_create_autocmd(events, {
+        group = vim.api.nvim_create_augroup("user_lint", { clear = true }),
         callback = function() lint.try_lint() end,
       })
     end,

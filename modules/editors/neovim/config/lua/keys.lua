@@ -87,8 +87,8 @@ vim.keymap.set("", "l", "e", {})
 -- create ambiguity: pressing `i` causes Neovim to wait for a second key to
 -- disambiguate `in` vs the single-key `i→l` remap, resulting in the cursor
 -- jumping one extra character. Unmap them to remove the ambiguity.
-vim.keymap.del("x", "in")
-vim.keymap.del("o", "in")
-vim.keymap.del("x", "an")
-vim.keymap.del("o", "an")
+pcall(vim.keymap.del, "x", "in")
+pcall(vim.keymap.del, "o", "in")
+pcall(vim.keymap.del, "x", "an")
+pcall(vim.keymap.del, "o", "an")
 --------------------------

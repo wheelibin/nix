@@ -62,39 +62,23 @@ return {
 
       vim.lsp.enable({
         "basedpyright",
+        "bashls",
         "clangd",
+        "cssls",
         "gopls",
         "html",
         "jsonls",
         "lua_ls",
+        "nixd",
+        "ruff",
         "terraformls",
+        "ts_ls",
         "yamlls",
       })
 
       setup_diagnostics()
       setup_keymaps()
+      vim.lsp.document_color.enable(true)
     end,
-  },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      settings = {
-        expose_as_code_action = "all",
-        complete_function_calls = true,
-        code_lens = "off",
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = "none",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = false,
-          includeInlayVariableTypeHints = false,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = false,
-          includeInlayEnumMemberValueHints = true,
-        },
-      },
-    },
   },
 }

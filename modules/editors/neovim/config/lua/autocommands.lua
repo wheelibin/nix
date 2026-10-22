@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("BufReadPost", { pattern = "Dockerfile*", command = 
 vim.api.nvim_create_autocmd("BufReadPost", { pattern = "*.gql.tmpl", command = [[set filetype=graphql]] })
 vim.api.nvim_create_autocmd("BufReadPost", { pattern = "*.http", command = [[set filetype=http]] })
 
-vim.api.nvim_create_autocmd({ "FocusLost", "ModeChanged", "TextChanged", "BufEnter" }, {
+vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave", "InsertLeave", "TextChanged" }, {
   pattern = "*",
   callback = function() vim.cmd("silent! update") end,
 })

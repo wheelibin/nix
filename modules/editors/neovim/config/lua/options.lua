@@ -39,9 +39,6 @@ opt.timeoutlen = 500
 -- show sign column
 opt.signcolumn = "yes"
 
--- Set completeopt to have a better completion experience
-opt.completeopt = { "menu", "menuone", "noselect" }
-
 -- needed for colorizer
 opt.termguicolors = true
 
@@ -80,6 +77,9 @@ opt.winborder = "rounded"
 -- border + max width for the completion popup menu (Neovim 0.12+)
 opt.pumborder = "rounded"
 opt.pummaxwidth = 60
+
+-- jumplist as a stack, restore scroll position on jump back
+opt.jumpoptions = { "stack", "view", "clean" }
 
 -- sane split options
 opt.splitbelow = true

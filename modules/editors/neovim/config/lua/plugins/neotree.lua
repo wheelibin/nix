@@ -1,10 +1,10 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    tag = "3.39.0",
+    tag = "3.42.0",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "echasnovski/mini.icons",
+      "nvim-mini/mini.icons",
       "MunifTanjim/nui.nvim",
     },
     keys = {

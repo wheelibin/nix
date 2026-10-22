@@ -26,7 +26,7 @@ return {
           lua = { "stylua" },
           markdown = { "prettier" },
           nix = { "nixfmt" },
-          python = { "isort", "black" },
+          python = { "ruff_organize_imports", "ruff_format" },
           sh = { "shfmt" },
           sql = { "pg_format" },
           typescript = { "prettier" },
