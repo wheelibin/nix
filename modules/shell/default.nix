@@ -24,5 +24,6 @@
     ffmpeg
     vhs
     ttyd # for vhs
+    pinentry_mac
   ];
 }
