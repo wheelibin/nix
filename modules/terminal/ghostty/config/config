@@ -5,6 +5,8 @@ config-file                      = theme.conf
 font-family                      = JetBrainsMonoNL NFM ExtraLight
 font-size                        = 24              
 adjust-cell-height               = -8%
+window-padding-color             = extend
+window-padding-balance           = true
 
 # options
 background-opacity               = 0.96
