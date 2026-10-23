@@ -1,6 +1,6 @@
 # appearance
-# theme                            = Kanagawa Dragon
-theme                            = Melange Dark
+# theme comes from theme.nix
+config-file                      = theme.conf
 
 font-family                      = JetBrainsMonoNL NFM ExtraLight
 font-size                        = 24              

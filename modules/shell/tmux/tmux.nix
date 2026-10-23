@@ -1,5 +1,13 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  ...
+}:
 
+let
+  theme = import ../../theme.nix;
+  c = theme.roles;
+in
 {
   home.file.".config/tmux/tmux-session-menu".source = ./tmux-session-menu;
   home.file.".config/tmux/tmux-sessionizer".source = ./tmux-sessionizer;
@@ -13,23 +21,31 @@
     prefix = "M-space";
     escapeTime = 0;
 
-    plugins = with pkgs.tmuxPlugins; [
-      sensible
-      {
-        plugin = ukiyo;
-        extraConfig = ''
-          set -g @ukiyo-ignore-window-colors true
-          set -g @ukiyo-theme 'dragon'
-          set -g @ukiyo-show-battery false
-          set -g @ukiyo-show-powerline true
-          set -g @ukiyo-refresh-rate 10
-          set -g @ukiyo-plugins "time git"
-        '';
-      }
-    ];
+    plugins =
+      with pkgs.tmuxPlugins;
+      [
+        sensible
+      ]
+      ++ lib.optional (theme.tmux.plugin != null) {
+        plugin = pkgs.tmuxPlugins.${theme.tmux.plugin};
+        extraConfig = theme.tmux.extraConfig;
+      };
 
     # Your keybindings and extra config go here
     extraConfig = ''
+      ${lib.optionalString (theme.tmux.plugin == null) ''
+        # theme from palette
+        set -g status-interval 10
+        set -g status-style "bg=${c.surface},fg=${c.text}"
+        set -g status-left "#[bg=${c.accent},fg=${c.bg},bold] #S #[default] "
+        set -g status-right "#[fg=${c.muted}]#(git -C #{pane_current_path} branch --show-current 2>/dev/null)  #[fg=${c.subtle}]%H:%M "
+        set -g window-status-format " #I:#W "
+        set -g window-status-current-format "#[bg=${c.selection},fg=${c.text},bold] #I:#W "
+        set -g pane-border-style "fg=${c.selection}"
+        set -g pane-active-border-style "fg=${c.accent}"
+        set -g message-style "bg=${c.surface},fg=${c.text}"
+        set -g mode-style "bg=${c.selection},fg=${c.text}"
+      ''}
       # ensure login shell is used
       set -g default-shell "$SHELL"
       set -g default-command "$SHELL -l"

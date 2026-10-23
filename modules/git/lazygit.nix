@@ -1,5 +1,8 @@
 { ... }:
 
+let
+  c = (import ../theme.nix).roles;
+in
 {
   programs.lazygit = {
     enable = true;
@@ -9,21 +12,21 @@
       git.commit.autoWrapCommitMessage = false;
       gui.theme = {
         activeBorderColor = [
-          "#7aa89f"
+          c.border
           "bold"
-        ]; # wave aqua
-        inactiveBorderColor = [ "#727169" ]; # wave sumiInk4
-        optionsTextColor = [ "#7e9cd8" ]; # wave crystalBlue
-        selectedLineBgColor = [ "#2d4f67" ]; # wave waveBlue1
-        selectedRangeBgColor = [ "#2d4f67" ];
-        cherryPickedCommitBgColor = [ "#181616" ]; # wave sumiInk0
-        cherryPickedCommitFgColor = [ "#7aa89f" ];
-        unstagedChangesColor = [ "#e82424" ]; # wave samuraiRed
-        defaultFgColor = [ "#dcd7ba" ]; # wave fujiWhite
+        ];
+        inactiveBorderColor = [ c.muted ];
+        optionsTextColor = [ c.accent ];
+        selectedLineBgColor = [ c.selection ];
+        selectedRangeBgColor = [ c.selection ];
+        cherryPickedCommitBgColor = [ c.surface ];
+        cherryPickedCommitFgColor = [ c.border ];
+        unstagedChangesColor = [ c.error ];
+        defaultFgColor = [ c.text ];
         searchingActiveBorderColor = [
-          "#ff9e3b"
+          c.warning
           "bold"
-        ]; # wave roninYellow
+        ];
       };
     };
   };

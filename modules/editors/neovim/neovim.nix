@@ -1,4 +1,12 @@
-{ pkgs-unstable, config, ... }:
+{
+  lib,
+  pkgs-unstable,
+  ...
+}:
+
+let
+  theme = import ../../theme.nix;
+in
 
 {
   programs.neovim = {
@@ -84,13 +92,14 @@
     shfmt
   ];
 
-  # Symlink to the working tree (not the store) so Lua edits apply without a
-  # switch; not pinned per generation. Falls back to the store copy when the
-  # repo isn't cloned at ~/dev/nix (needs --impure for pathExists).
-  home.file.".config/nvim".source =
-    let
-      live = "${config.home.homeDirectory}/dev/nix/modules/editors/neovim/config";
-    in
-    if builtins.pathExists live then config.lib.file.mkOutOfStoreSymlink live else ./config;
+  # Per-file links (not one dir symlink) so Nix can add generated files next
+  # to the hand-written config.
+  home.file.".config/nvim" = {
+    source = ./config;
+    recursive = true;
+  };
 
+  xdg.configFile."nvim/lua/theme_generated.lua".text = "return ${
+    lib.generators.toLua { } theme.nvim
+  }\n";
 }
