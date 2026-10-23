@@ -37,10 +37,13 @@ in
         # theme from palette
         set -g status-interval 10
         set -g status-style "bg=${c.surface},fg=${c.text}"
-        set -g status-left "#[bg=${c.accent},fg=${c.bg},bold] #S #[default] "
-        set -g status-right "#[fg=${c.muted}]#(git -C #{pane_current_path} branch --show-current 2>/dev/null)  #[fg=${c.subtle}]%H:%M "
-        set -g window-status-format " #I:#W "
-        set -g window-status-current-format "#[bg=${c.selection},fg=${c.text},bold] #I:#W "
+        set -g status-left-length 40
+        set -g status-right-length 80
+        set -g window-status-separator ""
+        set -g status-left "#[bg=${c.accent},fg=${c.bg},bold] #S #[bg=${c.surface},fg=${c.accent}] "
+        set -g status-right "#[bg=${c.surface},fg=${c.selection}]#[bg=${c.selection},fg=${c.subtle}] #(git -C #{pane_current_path} branch --show-current 2>/dev/null) #[bg=${c.selection},fg=${c.accent}]#[bg=${c.accent},fg=${c.bg},bold] %H:%M "
+        set -g window-status-format "#[fg=${c.subtle}] #I:#W "
+        set -g window-status-current-format "#[bg=${c.selection},fg=${c.surface}]#[bg=${c.selection},fg=${c.text},bold] #I:#W #[bg=${c.surface},fg=${c.selection},nobold]"
         set -g pane-border-style "fg=${c.selection}"
         set -g pane-active-border-style "fg=${c.accent}"
         set -g message-style "bg=${c.surface},fg=${c.text}"
