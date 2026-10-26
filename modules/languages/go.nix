@@ -9,7 +9,7 @@
 
   programs.go = {
     enable = true;
-    package = pkgs-unstable.go;
+    package = pkgs-unstable.go_1_27;
   };
 
   home.packages =
