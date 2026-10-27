@@ -24,4 +24,8 @@
     enableDefaultConfig = false;
     includes = [ "${config.home.homeDirectory}/.ssh/config.extra" ];
   };
+
+  home.activation.setWallpaper = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    /usr/bin/osascript -e 'tell application "System Events" to set picture of every desktop to "${../../wallpapers/4-akane.jpg}"'
+  '';
 }
