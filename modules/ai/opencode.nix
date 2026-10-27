@@ -1,5 +1,4 @@
 {
-  pkgs,
   pkgs-unstable,
   config,
   ...
@@ -9,14 +8,9 @@
   programs.opencode = {
     enable = true;
     package = pkgs-unstable.opencode;
-    # tui = {
-    #   theme = "kanagawa";
-    # };
     settings = {
       plugin = [
-        # "superpowers@git+https://github.com/obra/superpowers.git#v6.0.2",
         "@dietrichgebert/ponytail"
-        "@mattpocock/skills"
       ];
       provider.amazon-bedrock = {
         options = {
