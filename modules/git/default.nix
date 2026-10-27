@@ -30,6 +30,9 @@
       branch.sort = "-committerdate"; # show recently used branches first
       tag.sort = "version:refname"; # sort tags semantically (v1.9 < v1.10)
 
+      # --- Branch tracking ---
+      branch.autoSetupMerge = "simple"; # only track a start point with the same branch name (no tracking origin/master)
+
       # --- Pull/Rebase ---
       pull.rebase = true; # rebase instead of merge on pull
       rebase = {
