@@ -10,6 +10,8 @@
     ../../modules/languages
     ../../modules/shell
     ../../modules/terminal/ghostty/ghostty.nix
+    ../../modules/desktop/karabiner-elements.nix
+    ../../modules/desktop/omniwm.nix
   ];
 
   xdg.enable = true;

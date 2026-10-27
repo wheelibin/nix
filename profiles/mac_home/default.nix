@@ -4,8 +4,6 @@
   imports = [
     ../common
     ./packages.nix
-    ../../modules/desktop/karabiner-elements.nix
-    ../../modules/desktop/omniwm.nix
     ../../modules/ai/claude.nix
   ];
 
