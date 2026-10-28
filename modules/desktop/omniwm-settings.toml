@@ -75,7 +75,7 @@ right = 12.0
 top = 38.0
 
 [general]
-animationsEnabled = true
+animationsEnabled = false
 defaultLayoutType = "dwindle"
 hotkeysEnabled = true
 hyperKeyModifiers = "Control+Option+Shift+Command"
@@ -188,13 +188,13 @@ backgroundOpacity = 0.1
 deduplicateAppIcons = false
 enabled = true
 excludedBundleIDs = []
-height = 48.0
+height = 24.0
 hideEmptyWorkspaces = false
 hideInNativeFullscreen = false
 hoverPreviewsEnabled = true
 notchActiveZoneWidth = 180.0
-notchMode = "fillLeftOfNotch"
-position = "right"
+notchMode = "rightOfNotch"
+position = "overlappingMenuBar"
 reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
 revealModifier = "off"
@@ -725,7 +725,7 @@ binding = "Unassigned"
 id = "moveWindowToMonitor.down"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Control+Shift+Return"
 id = "toggleFullscreen"
 
 [[hotkeys]]
