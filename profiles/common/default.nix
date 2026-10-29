@@ -12,6 +12,7 @@
     ../../modules/terminal/ghostty/ghostty.nix
     ../../modules/desktop/karabiner-elements.nix
     ../../modules/desktop/omniwm.nix
+    ../../modules/desktop/wallpaper.nix
   ];
 
   xdg.enable = true;
@@ -26,8 +27,4 @@
     enableDefaultConfig = false;
     includes = [ "${config.home.homeDirectory}/.ssh/config.extra" ];
   };
-
-  home.activation.setWallpaper = config.lib.dag.entryAfter [ "writeBoundary" ] ''
-    /usr/bin/osascript -e 'tell application "System Events" to set picture of every desktop to "${../../wallpapers/4-akane.jpg}"'
-  '';
 }
