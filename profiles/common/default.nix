@@ -1,5 +1,9 @@
 { config, ... }:
 
+let
+  # machine-local, untracked overrides (e.g. private GOPRIVATE entries)
+  localEnv = "${builtins.getEnv "HOME"}/.config/hm/env.nix";
+in
 {
   imports = [
     ../../modules/ai/opencode.nix
@@ -13,7 +17,8 @@
     ../../modules/desktop/karabiner-elements.nix
     ../../modules/desktop/omniwm.nix
     ../../modules/desktop/wallpaper.nix
-  ];
+  ]
+  ++ (if builtins.pathExists localEnv then [ localEnv ] else [ ]);
 
   xdg.enable = true;
   home.username = builtins.getEnv "USER";
