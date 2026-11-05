@@ -14,6 +14,7 @@ in
     ../../modules/languages
     ../../modules/shell
     ../../modules/terminal/ghostty/ghostty.nix
+    ../../modules/terminal/rex/rex.nix
     ../../modules/desktop/karabiner-elements.nix
     ../../modules/desktop/omniwm.nix
     ../../modules/desktop/wallpaper.nix

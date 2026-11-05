@@ -15,6 +15,7 @@ let
     pine = "#31748f";
     foam = "#9ccfd8";
     iris = "#c4a7e7";
+    highlightMed = "#403d52";
   };
 in
 {
@@ -35,6 +36,34 @@ in
   };
 
   inherit palette;
+
+  # Terminal colors, as in Ghostty's "Rose Pine"; ansi is colors 0-15.
+  terminal = with palette; {
+    background = base;
+    foreground = text;
+    cursor = text;
+    cursorText = base;
+    selectionBackground = highlightMed;
+    selectionForeground = text;
+    ansi = [
+      overlay
+      love
+      pine
+      gold
+      foam
+      iris
+      rose
+      text
+      muted
+      love
+      pine
+      gold
+      foam
+      iris
+      rose
+      text
+    ];
+  };
 
   roles = {
     bg = palette.base;

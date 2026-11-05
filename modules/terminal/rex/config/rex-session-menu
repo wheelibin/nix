@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# rex-session-menu: switch to another Rex session.
+# alt-x closes the highlighted session. Port of ~/.config/tmux/tmux-session-menu.
+
+PATH="$HOME/.nix-profile/bin:$PATH"  # Rex starts this without the interactive shell config that adds nix
+export rex=$(command -v rex || echo "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex")
+
+# every session but this one, as "label<TAB>id"; also used by fzf's reload
+if [[ $1 == --list ]]; then
+    "$rex" ls --json | jq -r --arg cur "$REX_SESSION" '.sessions[] | select(.session_id != $cur) | "\(.label)\t\(.session_id)"'
+    exit
+fi
+
+selected=$("$0" --list | fzf --reverse --delimiter '\t' --with-nth 1 \
+    --bind "alt-x:execute-silent(\"\$rex\" kill {2})+reload(\"$0\" --list)")
+
+[[ -n $selected ]] && "$rex" do session.select session_id="$(cut -f2 <<<"$selected")"

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# rex-sessionizer: create or switch to a Rex session for a ~/dev project.
+# Usage: rex-sessionizer [path]   (no path: pick one with fzf)
+# A new session opens nvim on top (80%) and a shell below (20%).
+
+PATH="$HOME/.nix-profile/bin:$PATH" # Rex starts this without the interactive shell config that adds nix
+rex=$(command -v rex || echo "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex")
+
+# Started in a session of its own (no session was open): remove it on exit, as Rex leaves it empty.
+if [[ -n $REX_SESSION ]] && "$rex" ls --json | jq -e --arg s "$REX_SESSION" '.sessions[] | select(.session_id == $s and .label == "sessionizer")' >/dev/null; then
+  trap '"$rex" kill "$REX_SESSION" >/dev/null' EXIT
+fi
+
+if [[ $# -eq 1 ]]; then
+  selected=$1
+else
+  selected=$(ls -td ~/dev/*/ | sed 's:/$::' | fzf --reverse --delimiter '/' --with-nth -1)
+fi
+[[ -z $selected ]] && exit 0
+
+name=$(basename "$selected")
+session=$("$rex" ls --json | jq -r --arg n "$name" 'first(.sessions[] | select(.label == $n) | .session_id) // empty')
+
+if [[ -z $session ]]; then
+  created=$("$rex" new "$name" -c "$selected" --json) || exit 1
+  session=$(jq -r '.session_id' <<<"$created")
+  editor=$(jq -r '.initial_windows[0].block_ids[0]' <<<"$created")
+  # Start nvim inside the shell, as tmux send-keys did, so quitting nvim leaves a shell.
+  "$rex" send -s "$session" -b "$editor" nvim && "$rex" send-key -s "$session" -b "$editor" enter
+  "$rex" split -s "$session" -b "$editor" --split=below --ratio 20 -c "$selected" --focus=false >/dev/null
+fi
+
+"$rex" do session.select session_id="$session"

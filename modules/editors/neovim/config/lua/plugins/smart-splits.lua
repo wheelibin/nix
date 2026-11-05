@@ -10,9 +10,14 @@ return {
           --[[ backend-specific options go here ]]
         },
       },
+      {
+        "sfrieds3/smart-splits-backend-rex",
+        version = "^0.2.0",
+      },
     },
     opts = {
-      mux = { backend = "smart-splits-backend-tmux" },
+      -- tmux first, so nvim inside tmux inside Rex moves between tmux panes
+      mux = { backend = { "smart-splits-backend-tmux", "smart-splits-backend-rex" } },
     },
     keys = {
       {

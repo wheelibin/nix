@@ -16,6 +16,12 @@ let
     cyan = "#89B3B6";
     blue = "#A3A9CE";
     magenta = "#CF9BC2";
+    # dim variants, used by the terminal's normal ANSI colors (Ghostty's "Melange Dark")
+    dimRed = "#BD8183";
+    dimGreen = "#78997A";
+    dimBlue = "#7F91B2";
+    dimMagenta = "#B380B0";
+    dimCyan = "#7B9695";
   };
 in
 {
@@ -36,6 +42,34 @@ in
   };
 
   inherit palette;
+
+  # Terminal colors, as in Ghostty's "Melange Dark"; ansi is colors 0-15.
+  terminal = with palette; {
+    background = bg;
+    foreground = fg;
+    cursor = fg;
+    cursorText = bg;
+    selectionBackground = fg;
+    selectionForeground = sel;
+    ansi = [
+      float
+      dimRed
+      dimGreen
+      orange
+      dimBlue
+      dimMagenta
+      dimCyan
+      com
+      ui
+      red
+      green
+      yellow
+      blue
+      magenta
+      cyan
+      fg
+    ];
+  };
 
   roles = {
     bg = palette.bg; # base background

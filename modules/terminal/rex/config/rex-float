@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# rex-float: run a command in a Rex floating pane, then close the pane's layer.
+# Closing the layer explicitly returns focus to the pane you came from; when the
+# program just exits, Rex focuses some other pane instead.
+
+PATH="$HOME/.nix-profile/bin:$PATH" # Rex starts this without the interactive shell config that adds nix
+rex=$(command -v rex || echo "$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS/rex")
+
+"$@"
+
+layer=$("$rex" session inspect "$REX_SESSION" --json 2>/dev/null | jq -r --arg b "$REX_BLOCK" \
+  '.windows[].layers[]? | select(.kind == "floating" and ([.. | .block_id? // empty] | index($b))) | .layer_id')
+[[ -n $layer ]] && "$rex" api call -s "$REX_SESSION" session.close_layer "$(jq -nc --arg l "$layer" '{layer_id: $l}')" >/dev/null
