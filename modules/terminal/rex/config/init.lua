@@ -26,19 +26,20 @@ local function float(session_id, command, bounds, cwd)
 	end
 end
 
--- tmux.conf:89 session menu: fzf over the other sessions, alt-x closes one
-rex.action({
-	name = "session_menu",
-	title = "Session Menu",
-	run = function(ctx, args)
-		-- no session open means nothing to switch to; offer the projects instead
-		if ctx.session_id == nil then
-			return rex.invoke("sessionizer")
-		end
-		float(ctx.session_id, { script("rex-session-menu") }, { 0.35, 0.2, 0.3, 0.5 })
-	end,
-})
-rex.bind("alt+space>alt+space", "session_menu")
+-- -- tmux.conf:89 session menu: fzf over the other sessions, alt-x closes one
+-- rex.action({
+-- 	name = "session_menu",
+-- 	title = "Session Menu",
+-- 	run = function(ctx, args)
+-- 		-- no session open means nothing to switch to; offer the projects instead
+-- 		if ctx.session_id == nil then
+-- 			return rex.invoke("sessionizer")
+-- 		end
+-- 		float(ctx.session_id, { script("rex-session-menu") }, { 0.35, 0.2, 0.3, 0.5 })
+-- 	end,
+-- })
+-- rex.bind("alt+space>alt+space", "session_menu")
+rex.bind("alt+space>alt+space", "session.switch")
 
 -- tmux.conf:91 lazygit popup, in the focused pane's directory
 rex.action({
