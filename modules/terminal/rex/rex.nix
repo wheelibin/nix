@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 let
   theme = import ../../theme.nix;
@@ -50,10 +50,13 @@ in
       selection-background = ${t.selectionBackground}
       selection-foreground = ${t.selectionForeground}
     '';
-    # Needs the app running with Remote Control on; otherwise run "Apply Nix Theme" in Rex.
-    onChange = ''
-      "${rex}" --autostart=false do client.theme.import path="$HOME/.config/rex/theme" >/dev/null 2>&1 \
-        || echo "Rex: run 'Apply Nix Theme' to load the new theme"
-    '';
   };
+
+  # Every switch, not onChange: the import is idempotent, and on a new machine the first run
+  # usually fails (app not installed/running, Remote Control off) and would never be retried.
+  # Needs the app running with Remote Control on; otherwise run "Apply Nix Theme" in Rex.
+  home.activation.rexTheme = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    "${rex}" --autostart=false do client.theme.import path="$HOME/.config/rex/theme" >/dev/null 2>&1 \
+      || echo "Rex: run 'Apply Nix Theme' to load the theme"
+  '';
 }
