@@ -111,26 +111,10 @@ local function setup_ui()
   })
   MiniIndentscope.config.draw.animation = MiniIndentscope.gen_animation.none()
 
-  -- Start screen
-  local starter = require("mini.starter")
-  starter.setup({
-    header = table.concat({
-      "   ____  ___  ____ _   __(_)___ ___",
-      "  / __ \\/ _ \\/ __ \\ | / / / __ `__ \\",
-      " / / / /  __/ /_/ / |/ / / / / / / /",
-      "/_/ /_/\\___/\\____/|___/_/_/ /_/ /_/",
-    }, "\n"),
-    items = { starter.sections.recent_files(10, true) },
-    footer = '"Don\'t Panic"',
-  })
-
   -- Apply theme-derived highlights; called once now and again on colorscheme change
   local function apply_hl()
     local muted = vim.api.nvim_get_hl(0, { name = "Comment", link = false }).fg
-    local accent = vim.api.nvim_get_hl(0, { name = "Title", link = false }).fg
     vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = muted })
-    vim.api.nvim_set_hl(0, "MiniStarterHeader", { fg = accent })
-    vim.api.nvim_set_hl(0, "MiniStarterFooter", { fg = muted })
   end
   apply_hl()
   vim.api.nvim_create_autocmd("ColorScheme", { callback = apply_hl })
