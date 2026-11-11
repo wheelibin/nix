@@ -41,25 +41,29 @@ end
 -- rex.bind("alt+space>alt+space", "session_menu")
 rex.bind("alt+space>alt+space", "session.switch")
 
--- tmux.conf:91 lazygit popup, in the focused pane's directory
-rex.action({
-	name = "lazygit",
-	title = "Lazygit",
-	run = function(ctx, args)
-		if ctx.session_id == nil then
-			error("Lazygit needs an open session", 0)
-		end
-		local p = ctx.block_id
-			and rex.call("com.superlogical.terminal.process", {
-				session_id = ctx.session_id,
-				block_id = ctx.block_id,
-				args = {},
-			})
-		local cwd = p and p.foreground and p.foreground.cwd
-		float(ctx.session_id, { "lazygit" }, { 0.1, 0.1, 0.8, 0.8 }, cwd)
-	end,
-})
-rex.bind("alt+space>g", "lazygit")
+-- tmux.conf:91 lazygit popup (and yazi alike), in the focused pane's directory
+local function tool_popup(name, title, key)
+	rex.action({
+		name = name,
+		title = title,
+		run = function(ctx, args)
+			if ctx.session_id == nil then
+				error(title .. " needs an open session", 0)
+			end
+			local p = ctx.block_id
+				and rex.call("com.superlogical.terminal.process", {
+					session_id = ctx.session_id,
+					block_id = ctx.block_id,
+					args = {},
+				})
+			local cwd = p and p.foreground and p.foreground.cwd
+			float(ctx.session_id, { name }, { 0.1, 0.1, 0.8, 0.8 }, cwd)
+		end,
+	})
+	rex.bind("alt+space>" .. key, name)
+end
+tool_popup("lazygit", "Lazygit", "g")
+tool_popup("yazi", "Yazi", "y")
 
 -- tmux.conf:90 sessionizer popup, as a floating pane that closes when the script exits.
 -- With no session open there is nothing to float over, so the picker floats over a
