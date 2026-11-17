@@ -1,12 +1,12 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = [ pkgs-unstable.omniwm ];
+  home.packages = [ pkgs.omniwm ];
 
   launchd.agents.omniwm = {
     enable = true;
     config = {
-      ProgramArguments = [ "${pkgs-unstable.omniwm}/bin/OmniWM" ];
+      ProgramArguments = [ "${pkgs.omniwm}/bin/OmniWM" ];
       RunAtLoad = true;
       KeepAlive = true;
     };

@@ -1,5 +1,5 @@
 {
-  pkgs-unstable,
+  pkgs,
   config,
   ...
 }:
@@ -7,7 +7,7 @@
 {
   programs.opencode = {
     enable = true;
-    package = pkgs-unstable.opencode;
+    package = pkgs.opencode;
     settings = {
       plugin = [
         "@dietrichgebert/ponytail"

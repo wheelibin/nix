@@ -2,24 +2,22 @@
   description = "Home Manager configuration for macOS";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     qrypad = {
       url = "github:wheelibin/qrypad";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
     {
       nixpkgs,
-      nixpkgs-unstable,
       home-manager,
       qrypad,
       ...
@@ -36,18 +34,13 @@
         ];
       };
 
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
       # Behind Zscaler, buildGoModule's dependency download fails TLS because nixpkgs' cacert doesn't
       # trust it. Evaluate qrypad's own flake against a nixpkgs whose cacert does.
       qrypad-work =
         ((import "${qrypad}/flake.nix").outputs {
           self = qrypad;
           flake-utils = qrypad.inputs.flake-utils;
-          nixpkgs.legacyPackages.${system} = import nixpkgs-unstable {
+          nixpkgs.legacyPackages.${system} = import nixpkgs {
             inherit system;
             overlays = [
               (final: prev: {
@@ -64,7 +57,7 @@
         mac_home = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit system pkgs-unstable;
+            inherit system;
             qrypad-pkg = qrypad.packages.${system}.default;
           };
           modules = [ ./profiles/mac_home ];
@@ -73,7 +66,7 @@
         mac_work = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
-            inherit system pkgs-unstable;
+            inherit system;
             qrypad-pkg = qrypad-work;
           };
           modules = [ ./profiles/mac_work ];

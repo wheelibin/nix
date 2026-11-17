@@ -1,6 +1,6 @@
 {
   lib,
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 
@@ -24,7 +24,7 @@ in
     # this just supplies the grammars + query files on the runtimepath.
     # This list is the single source of truth for installed languages.
     plugins = [
-      (pkgs-unstable.vimPlugins.nvim-treesitter.withPlugins (p: [
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
         p.bash
         p.c
         p.comment
@@ -71,7 +71,7 @@ in
     ];
   };
 
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     # LSP servers
     basedpyright
     bash-language-server
