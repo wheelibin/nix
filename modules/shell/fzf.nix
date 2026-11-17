@@ -7,6 +7,8 @@ in
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    # atuin owns Ctrl-R
+    historyWidget.command = "";
     # bg/fg left to the terminal so transparency still works
     colors = {
       "bg+" = c.selection;
