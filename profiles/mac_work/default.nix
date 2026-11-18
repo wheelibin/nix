@@ -9,4 +9,6 @@
   ];
 
   programs.zsh.shellAliases.hm = "home-manager switch --impure --flake ~/dev/nix#mac_work";
+
+  wallpaper.file = "cats-anime.jpg"; # pin one from wallpapers/; unset = random (login + 06:00)
 }
